@@ -34,36 +34,11 @@
     <link rel="stylesheet" href="css/site.css" />
 </head>
 
-<body class="text-gray-800 antialiased overflow-x-hidden site-ready">
+<body data-page="home" class="text-gray-800 antialiased overflow-x-hidden site-ready">
 
     <div id="scroll-progress" aria-hidden="true"></div>
 
-    <!-- হেডার -->
-    <header class="site-header sticky top-0 z-30">
-        <nav class="max-w-7xl mx-auto px-6 lg:px-8 h-20 flex items-center justify-between">
-            <a href="index.html" class="flex items-center gap-2.5 group">
-                <img src="assets/images/logo.png" alt="ব্যাবেজ একাডেমি লোগো"
-                    class="w-11 h-11 object-contain transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3" />
-                <span class="font-bold text-xl md:text-2xl text-gray-900">ব্যাবেজ একাডেমি</span>
-            </a>
-            <ul class="hidden md:flex items-center gap-8 text-[15px] font-medium text-gray-600">
-                <li><a href="#" class="nav-link hover:text-brand-700 transition" data-section="home">হোম</a></li>
-                <li><a href="all-courses.html" class="nav-link hover:text-brand-700 transition" data-section="courses">সব কোর্স</a>
-                </li>
-                <li><a href="#features" class="nav-link hover:text-brand-700 transition"
-                        data-section="features">বৈশিষ্ট্য</a></li>
-                <li><a href="#faq" class="nav-link hover:text-brand-700 transition" data-section="faq">প্রশ্নোত্তর</a>
-                </li>
-                <li><a href="#contact" class="nav-link hover:text-brand-700 transition"
-                        data-section="contact">যোগাযোগ</a></li>
-            </ul>
-            <div class="flex items-center gap-4">
-                <a href="#"
-                    class="hidden sm:inline text-[15px] font-medium text-gray-700 hover:text-brand-700 transition">নিবন্ধন</a>
-                <a href="#" class="btn-gradient btn-shine px-6 py-2.5 rounded-full text-white text-[14px]">লগ ইন</a>
-            </div>
-        </nav>
-    </header>
+    <header id="site-header"></header>
 
     <!-- হিরো -->
     <div id="home" class="relative bg-gradient-to-b from-brand-100 via-brand-50 to-white overflow-hidden">
@@ -421,103 +396,10 @@
         </div>
     </section>
 
-    <!-- ফুটার -->
-    <footer id="contact" class="bg-gradient-to-b from-white to-brand-50 border-t border-gray-100">
-        <div class="max-w-7xl mx-auto px-6 lg:px-8 py-16">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-10">
-                <div>
-                    <h4 class="font-bold text-gray-900 mb-4">কোর্স</h4>
-                    <ul class="space-y-3 text-sm text-gray-500">
-                        <li><a href="course-details.html?id=python-ict" class="hover:text-brand-700">পাইথন + ICT</a></li>
-                        <li><a href="course-details.html?id=c-ict" class="hover:text-brand-700">সি + ICT</a></li>
-                        <li><a href="course-details.html?id=nhspc-prep" class="hover:text-brand-700">NHSPC প্রস্তুতি</a></li>
-                        <li><a href="#" class="hover:text-brand-700">অ্যালগরিদম বেসিক</a></li>
-                        <li><a href="all-courses.html" class="hover:text-brand-700">সব কোর্স</a></li>
-                        <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSeKd2ZqZRwi-WOPNQOxXFGsEwLyyeMNWOWyHkMAeAYsNt3kcQ/viewform?usp=send_form" target="_blank" rel="noopener" class="hover:text-brand-700">কোর্সে ভর্তি ফর্ম</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-bold text-gray-900 mb-4">রিসোর্স</h4>
-                    <ul class="space-y-3 text-sm text-gray-500">
-                        <li><a href="#" class="hover:text-brand-700">ব্লগ</a></li>
-                        <li><a href="#" class="hover:text-brand-700">ICT নোট</a></li>
-                        <li><a href="#" class="hover:text-brand-700">কোড উদাহরণ</a></li>
-                        <li><a href="#" class="hover:text-brand-700">সাহায্য কেন্দ্র</a></li>
-                        <li><a href="#" class="hover:text-brand-700">কমিউনিটি</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-bold text-gray-900 mb-4">আমাদের সম্পর্কে</h4>
-                    <ul class="space-y-3 text-sm text-gray-500">
-                        <li><a href="#" class="hover:text-brand-700">পরিচিতি</a></li>
-                        <li><a href="#" class="hover:text-brand-700">শিক্ষক হিসেবে যোগ দিন</a></li>
-                        <li><a href="#" class="hover:text-brand-700">যোগাযোগ</a></li>
-                        <li><a href="#" class="hover:text-brand-700">শর্তাবলী</a></li>
-                        <li><a href="#" class="hover:text-brand-700">গোপনীয়তা নীতি</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-bold text-gray-900 mb-4">যোগাযোগ</h4>
-                    <ul class="space-y-4 text-sm">
-                        <li>
-                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeKd2ZqZRwi-WOPNQOxXFGsEwLyyeMNWOWyHkMAeAYsNt3kcQ/viewform?usp=send_form" target="_blank" rel="noopener"
-                                class="group flex items-start gap-3 text-gray-500 hover:text-brand-700 transition">
-                                <span
-                                    class="w-9 h-9 shrink-0 rounded-xl bg-brand-50 flex items-center justify-center text-brand-700 group-hover:bg-brand-100 transition">
-                                    <i class="fa-solid fa-file-pen text-lg"></i>
-                                </span>
-                                <span>
-                                    <span class="block font-semibold text-gray-900 group-hover:text-brand-700">কোর্সে ভর্তি ফর্ম</span>
-                                    <span class="block mt-0.5">অনলাইন আবেদন করুন</span>
-                                </span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <div
-                class="mt-14 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 border-t border-gray-100 pt-10">
-                <div>
-                    <h3 class="font-bold text-2xl text-gray-900">নতুন কোর্স ও টিপস পেতে সাবস্ক্রাইব করো</h3>
-                    <p class="text-sm text-gray-500 mt-2">প্রথম শিক্ষার্থীদের জন্য — আপডেট ও নতুন কোর্সের খবর পাবে।</p>
-                </div>
-                <form class="flex items-center gap-3 w-full max-w-md">
-                    <input type="email" placeholder="তোমার ইমেইল লেখো"
-                        class="flex-1 h-12 px-5 rounded-full border border-gray-200 bg-white text-sm focus:outline-none focus:border-brand-600" />
-                    <button type="submit"
-                        class="btn-gradient h-12 px-8 rounded-full text-white text-sm whitespace-nowrap shrink-0">সাবস্ক্রাইব</button>
-                </form>
-            </div>
-
-            <div class="mt-10 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-gray-400">
-                <div>
-                    <p>© ২০২৫ ব্যাবেজ একাডেমি। সর্বস্বত্ব সংরক্ষিত।</p>
-                    <p class="mt-1 text-xs">ওয়েবফন্ট — <a href="https://lipighor.com"
-                            class="hover:text-brand-700 underline underline-offset-2" target="_blank"
-                            rel="noopener">lipighor.com</a></p>
-                </div>
-                <div class="flex flex-wrap items-center justify-center sm:justify-end gap-3">
-                    <a href="https://wa.me/8801712383115" target="_blank" rel="noopener" aria-label="WhatsApp Us"
-                        class="w-10 h-10 rounded-full bg-white border border-gray-200 flex items-center justify-center text-brand-700 hover:bg-brand-50 hover:border-brand-200 transition">
-                        <i class="fa-brands fa-whatsapp text-lg"></i>
-                    </a>
-                    <a href="https://www.youtube.com/@babbage.academy" target="_blank" rel="noopener"
-                        aria-label="Subscribe on YouTube"
-                        class="w-10 h-10 rounded-full bg-white border border-gray-200 flex items-center justify-center text-brand-700 hover:bg-brand-50 hover:border-brand-200 transition">
-                        <i class="fa-brands fa-youtube text-lg"></i>
-                    </a>
-                    <a href="https://www.facebook.com/cbabbage.academy" target="_blank" rel="noopener"
-                        aria-label="Follow on Facebook"
-                        class="w-10 h-10 rounded-full bg-white border border-gray-200 flex items-center justify-center text-brand-700 hover:bg-brand-50 hover:border-brand-200 transition">
-                        <i class="fa-brands fa-facebook-f text-lg"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </footer>
+    <footer id="site-footer"></footer>
 
     <script src="js/courses.js"></script>
+    <script src="js/site.js"></script>
     <script>
         renderCourseCards('course-grid');
 
@@ -566,18 +448,11 @@
             const bnDigits = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
             const toBn = (n) => String(n).split('').map(d => bnDigits[+d] ?? d).join('');
 
-            // Scroll progress
-            const progress = document.getElementById('scroll-progress');
-            const header = document.querySelector('.site-header');
-            window.addEventListener('scroll', () => {
-                const scrollTop = window.scrollY;
-                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-                progress.style.transform = `scaleX(${docHeight > 0 ? scrollTop / docHeight : 0})`;
-                header.classList.toggle('scrolled', scrollTop > 24);
-            }, { passive: true });
+            // Scroll progress & back to top
+            initSite({ reveal: false });
 
             // Active nav link
-            const sections = ['home', 'courses', 'features', 'faq', 'contact'];
+            const sections = ['home', 'courses', 'features', 'faq'];
             const navLinks = document.querySelectorAll('.nav-link[data-section]');
             const observerNav = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {

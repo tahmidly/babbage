@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="bn">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ভর্তি সফল — ব্যাবেজ একাডেমি</title>
+    <link rel="icon" href="assets/images/logo.png" type="image/png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Li Ador Noirrit', 'sans-serif'] },
+                    colors: {
+                        brand: { 50: '#f0fdf4', 100: '#dcfce7', 500: '#22c55e', 600: '#16a34a', 700: '#15803d', 800: '#166534', 900: '#14532d' },
+                        accent: '#f59e0b',
+                    },
+                },
+            },
+        };
+    </script>
+    <link rel="stylesheet" href="css/site.css" />
+</head>
+
+<body data-page="enrollment-success" class="text-gray-800 antialiased overflow-x-hidden site-ready min-h-screen flex flex-col">
+
+    <div id="scroll-progress" aria-hidden="true"></div>
+
+    <header id="site-header"></header>
+
+    <main class="flex-1 flex items-center">
+        <section class="max-w-2xl mx-auto px-6 lg:px-8 py-16 text-center w-full">
+            <div class="reveal">
+                <div class="w-20 h-20 mx-auto rounded-full bg-brand-100 text-brand-700 flex items-center justify-center text-3xl">
+                    <i class="fa-solid fa-circle-check"></i>
+                </div>
+                <h1 class="font-bold text-gray-900 text-3xl md:text-4xl mt-8">আবেদন সফল হয়েছে!</h1>
+                <p class="text-gray-600 mt-4 leading-relaxed">
+                    ধন্যবাদ! তোমার ভর্তির আবেদন আমরা পেয়েছি। শীঘ্রই WhatsApp-এ যোগাযোগ করা হবে।
+                </p>
+
+                <div id="success-summary" class="mt-8 rounded-2xl border border-gray-100 bg-white p-6 text-left card-leaf-bg hidden">
+                    <p class="text-sm text-gray-500">আবেদনের সারসংক্ষেপ</p>
+                    <dl class="mt-4 space-y-2 text-sm">
+                        <div class="flex justify-between gap-4"><dt class="text-gray-500">নাম</dt><dd id="sum-name" class="font-medium text-gray-900 text-right"></dd></div>
+                        <div class="flex justify-between gap-4"><dt class="text-gray-500">ইমেইল</dt><dd id="sum-email" class="font-medium text-gray-900 text-right break-all"></dd></div>
+                        <div class="flex justify-between gap-4"><dt class="text-gray-500">WhatsApp</dt><dd id="sum-whatsapp" class="font-medium text-gray-900 text-right"></dd></div>
+                        <div class="flex justify-between gap-4"><dt class="text-gray-500">স্কুল</dt><dd id="sum-school" class="font-medium text-gray-900 text-right"></dd></div>
+                        <div class="flex justify-between gap-4"><dt class="text-gray-500">কোর্স</dt><dd id="sum-course" class="font-medium text-gray-900 text-right"></dd></div>
+                        <div class="flex justify-between gap-4"><dt class="text-gray-500">bKash TrxID</dt><dd id="sum-bkash" class="font-medium text-gray-900 text-right"></dd></div>
+                    </dl>
+                </div>
+
+                <div class="flex flex-wrap items-center justify-center gap-3 mt-10">
+                    <a href="index.html"
+                        class="px-6 py-3 rounded-full bg-white text-gray-800 text-[15px] font-semibold border border-gray-200 hover:border-brand-600 hover:text-brand-700 transition shadow-sm">
+                        হোমে ফিরে যাও
+                    </a>
+                    <a href="https://wa.me/8801712383115" target="_blank" rel="noopener"
+                        class="btn-gradient btn-shine px-6 py-3 rounded-full text-white text-[15px]">
+                        <i class="fa-brands fa-whatsapp mr-2"></i>WhatsApp-এ যোগাযোগ
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="site-footer"></footer>
+
+    <script src="js/courses.js"></script>
+    <script src="js/site.js"></script>
+    <script>
+        (function () {
+            const raw = sessionStorage.getItem('enrollmentData');
+            if (raw) {
+                try {
+                    const data = JSON.parse(raw);
+                    document.getElementById('success-summary').classList.remove('hidden');
+                    document.getElementById('sum-name').textContent = data.name || '—';
+                    document.getElementById('sum-email').textContent = data.email || '—';
+                    document.getElementById('sum-whatsapp').textContent = data.whatsapp || '—';
+                    document.getElementById('sum-school').textContent = data.school || '—';
+                    document.getElementById('sum-course').textContent = data.courseTitle || data.course || '—';
+                    document.getElementById('sum-bkash').textContent = data.bkash_trx || '—';
+                } catch (_) { /* ignore */ }
+            }
+            initSite({ reveal: true });
+        })();
+    </script>
+</body>
+
+</html>

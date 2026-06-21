@@ -1,5 +1,15 @@
 const ENROLL_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSeKd2ZqZRwi-WOPNQOxXFGsEwLyyeMNWOWyHkMAeAYsNt3kcQ/viewform?usp=send_form';
 
+const INSTRUCTOR = {
+    name: 'মো. রফিকুল ইসলাম',
+    title: 'প্রধান শিক্ষক ও প্রতিষ্ঠাতা',
+    bio: 'হাই স্কুল শিক্ষার্থীদের জন্য বাংলায় প্রোগ্রামিং শেখানোর ৫+ বছরের অভিজ্ঞতা। ICT সিলেবাস, প্রতিযোগিতামূলক প্রোগ্রামিং ও NHSPC প্রস্তুতিতে বিশেষজ্ঞ।',
+    img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&auto=format&fit=crop',
+    experience: '৫+ বছর',
+    students: '৫০০+',
+    specialty: 'পাইথন, সি, NHSPC',
+};
+
 const COURSES = [
     {
         id: 'python-ict',

@@ -495,3 +495,121 @@ body.site-ready .hero-visual {
 .curriculum-item.open .faq-icon {
     transform: rotate(180deg);
 }
+
+/* ── Back to top ── */
+#back-to-top {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    z-index: 40;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 9999px;
+    border: 1px solid rgba(255, 255, 255, 0.85);
+    background: linear-gradient(to bottom, #34c759 0%, #28a745 55%, #146b2e 100%);
+    color: #fff;
+    box-shadow: 0 10px 30px rgba(22, 163, 74, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(12px);
+    transition: opacity 0.25s ease, visibility 0.25s ease, transform 0.25s ease;
+}
+
+#back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+#back-to-top:hover {
+    filter: brightness(1.06);
+}
+
+/* ── Forms ── */
+.form-input {
+    width: 100%;
+    height: 3rem;
+    padding: 0 1rem;
+    border-radius: 0.75rem;
+    border: 1px solid #e5e7eb;
+    background: #fff;
+    font-size: 0.9375rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-input,
+.form-input option {
+    color: #111827;
+}
+
+.form-input:invalid,
+select.form-input:has(option[value=""]:checked) {
+    color: #6b7280;
+}
+
+select.form-input {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    padding-right: 2.5rem;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #16a34a;
+    box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.12);
+}
+
+.form-textarea {
+    min-height: 7rem;
+    padding: 0.875rem 1rem;
+    resize: vertical;
+}
+
+.form-label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 0.375rem;
+}
+
+.instructor-card {
+    background: linear-gradient(145deg, #ffffff 0%, #f0fdf4 100%);
+}
+
+.prose-page h2 {
+    font-weight: 700;
+    font-size: 1.375rem;
+    color: #111827;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+}
+
+.prose-page p,
+.prose-page li {
+    color: #4b5563;
+    line-height: 1.8;
+    font-size: 1rem;
+}
+
+@media (min-width: 768px) {
+    .prose-page p,
+    .prose-page li {
+        font-size: 1.0625rem;
+    }
+}
+
+.prose-page ul {
+    list-style: disc;
+    padding-left: 1.25rem;
+    margin-top: 0.5rem;
+}
+
+.prose-page li + li {
+    margin-top: 0.375rem;
+}

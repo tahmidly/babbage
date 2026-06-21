@@ -34,31 +34,11 @@
     <link rel="stylesheet" href="css/site.css" />
 </head>
 
-<body class="text-gray-800 antialiased overflow-x-hidden site-ready">
+<body data-page="course-details" class="text-gray-800 antialiased overflow-x-hidden site-ready">
 
     <div id="scroll-progress" aria-hidden="true"></div>
 
-    <header class="site-header sticky top-0 z-30 bg-white/90 backdrop-blur-md shadow-sm">
-        <nav class="max-w-7xl mx-auto px-6 lg:px-8 h-20 flex items-center justify-between">
-            <a href="index.html" class="flex items-center gap-2.5 group">
-                <img src="assets/images/logo.png" alt="ব্যাবেজ একাডেমি লোগো"
-                    class="w-11 h-11 object-contain transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3" />
-                <span class="font-bold text-xl md:text-2xl text-gray-900">ব্যাবেজ একাডেমি</span>
-            </a>
-            <ul class="hidden md:flex items-center gap-8 text-[15px] font-medium text-gray-600">
-                <li><a href="index.html" class="nav-link hover:text-brand-700 transition">হোম</a></li>
-                <li><a href="all-courses.html" class="nav-link hover:text-brand-700 transition">সব কোর্স</a></li>
-                <li><a href="index.html#features" class="nav-link hover:text-brand-700 transition">বৈশিষ্ট্য</a></li>
-                <li><a href="index.html#faq" class="nav-link hover:text-brand-700 transition">প্রশ্নোত্তর</a></li>
-                <li><a href="index.html#contact" class="nav-link hover:text-brand-700 transition">যোগাযোগ</a></li>
-            </ul>
-            <div class="flex items-center gap-4">
-                <a href="#"
-                    class="hidden sm:inline text-[15px] font-medium text-gray-700 hover:text-brand-700 transition">নিবন্ধন</a>
-                <a href="#" class="btn-gradient btn-shine px-6 py-2.5 rounded-full text-white text-[14px]">লগ ইন</a>
-            </div>
-        </nav>
-    </header>
+    <header id="site-header"></header>
 
     <main id="course-page">
         <!-- Hero -->
@@ -88,7 +68,7 @@
                             class="mt-5 max-w-xl text-gray-600 text-base md:text-lg leading-relaxed"></p>
                         <div id="course-meta" class="flex flex-wrap items-center gap-3 mt-8"></div>
                         <div class="flex flex-wrap gap-3 mt-8">
-                            <a id="course-hero-enroll" href="https://docs.google.com/forms/d/e/1FAIpQLSeKd2ZqZRwi-WOPNQOxXFGsEwLyyeMNWOWyHkMAeAYsNt3kcQ/viewform?usp=send_form" target="_blank" rel="noopener"
+                            <a id="course-hero-enroll" href="enrollment.html"
                                 class="btn-gradient btn-shine px-7 py-3 rounded-full text-white text-[15px]">কোর্সে ভর্তি হও</a>
                             <a href="all-courses.html"
                                 class="px-6 py-3 rounded-full bg-white/80 text-gray-800 text-[15px] font-semibold border border-brand-100 hover:border-brand-300 hover:text-brand-700 transition shadow-sm">সব কোর্স</a>
@@ -159,26 +139,30 @@
                 </div>
 
                 <aside class="lg:col-span-1">
-                    <div class="reveal sticky top-28 rounded-2xl border border-gray-100 shadow-sm bg-white p-7 card-leaf-bg">
-                        <p class="text-sm text-gray-500">কোর্স ফি</p>
-                        <p id="course-price" class="font-bold text-3xl text-brand-700 mt-1"></p>
-                        <ul id="course-includes" class="mt-6 space-y-3 text-sm text-gray-600"></ul>
-                        <div id="course-sidebar-meta" class="mt-6 pt-6 border-t border-gray-100 space-y-3 text-sm text-gray-600"></div>
-                        <a id="course-enroll-btn" href="https://docs.google.com/forms/d/e/1FAIpQLSeKd2ZqZRwi-WOPNQOxXFGsEwLyyeMNWOWyHkMAeAYsNt3kcQ/viewform?usp=send_form" target="_blank" rel="noopener"
-                            class="btn-gradient btn-shine mt-7 w-full py-3.5 rounded-full text-white text-[15px] text-center block">
-                            কোর্সে ভর্তি হও
-                        </a>
-                        <a href="all-courses.html"
-                            class="mt-3 w-full py-3 rounded-full text-center block text-[15px] font-semibold border border-gray-200 text-gray-700 hover:border-brand-600 hover:text-brand-700 transition">
-                            সব কোর্স দেখো
-                        </a>
+                    <div class="sticky top-28 space-y-7">
+                        <div id="instructor-card" class="reveal rounded-2xl border border-gray-100 instructor-card p-6 shadow-sm"></div>
+
+                        <div class="reveal rounded-2xl border border-gray-100 shadow-sm bg-white p-7 card-leaf-bg" style="transition-delay:0.06s">
+                            <p class="text-sm text-gray-500">কোর্স ফি</p>
+                            <p id="course-price" class="font-bold text-3xl text-brand-700 mt-1"></p>
+                            <ul id="course-includes" class="mt-6 space-y-3 text-sm text-gray-600"></ul>
+                            <div id="course-sidebar-meta" class="mt-6 pt-6 border-t border-gray-100 space-y-3 text-sm text-gray-600"></div>
+                            <a id="course-enroll-btn" href="enrollment.html"
+                                class="btn-gradient btn-shine mt-7 w-full py-3.5 rounded-full text-white text-[15px] text-center block">
+                                কোর্সে ভর্তি হও
+                            </a>
+                            <a href="all-courses.html"
+                                class="mt-3 w-full py-3 rounded-full text-center block text-[15px] font-semibold border border-gray-200 text-gray-700 hover:border-brand-600 hover:text-brand-700 transition">
+                                সব কোর্স দেখো
+                            </a>
+                        </div>
                     </div>
                 </aside>
             </div>
         </section>
 
         <!-- Related courses -->
-        <section class="bg-gradient-to-b from-brand-50 to-white py-16 border-t border-gray-100">
+        <section class="bg-white py-16 border-t border-gray-100">
             <div class="max-w-7xl mx-auto px-6 lg:px-8">
                 <h2 class="reveal font-bold text-gray-900 text-2xl md:text-3xl">অন্যান্য কোর্স</h2>
                 <div id="related-courses" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-7 mt-10"></div>
@@ -186,76 +170,10 @@
         </section>
     </main>
 
-    <footer id="contact" class="bg-gradient-to-b from-white to-brand-50 border-t border-gray-100">
-        <div class="max-w-7xl mx-auto px-6 lg:px-8 py-16">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-10">
-                <div>
-                    <h4 class="font-bold text-gray-900 mb-4">কোর্স</h4>
-                    <ul class="space-y-3 text-sm text-gray-500">
-                        <li><a href="course-details.html?id=python-ict" class="hover:text-brand-700">পাইথন + ICT</a></li>
-                        <li><a href="course-details.html?id=c-ict" class="hover:text-brand-700">সি + ICT</a></li>
-                        <li><a href="course-details.html?id=nhspc-prep" class="hover:text-brand-700">NHSPC প্রস্তুতি</a></li>
-                        <li><a href="all-courses.html" class="hover:text-brand-700">সব কোর্স</a></li>
-                        <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSeKd2ZqZRwi-WOPNQOxXFGsEwLyyeMNWOWyHkMAeAYsNt3kcQ/viewform?usp=send_form" target="_blank" rel="noopener" class="hover:text-brand-700">কোর্সে ভর্তি ফর্ম</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-bold text-gray-900 mb-4">রিসোর্স</h4>
-                    <ul class="space-y-3 text-sm text-gray-500">
-                        <li><a href="#" class="hover:text-brand-700">ব্লগ</a></li>
-                        <li><a href="#" class="hover:text-brand-700">ICT নোট</a></li>
-                        <li><a href="#" class="hover:text-brand-700">কোড উদাহরণ</a></li>
-                        <li><a href="#" class="hover:text-brand-700">সাহায্য কেন্দ্র</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-bold text-gray-900 mb-4">আমাদের সম্পর্কে</h4>
-                    <ul class="space-y-3 text-sm text-gray-500">
-                        <li><a href="#" class="hover:text-brand-700">পরিচিতি</a></li>
-                        <li><a href="#" class="hover:text-brand-700">যোগাযোগ</a></li>
-                        <li><a href="#" class="hover:text-brand-700">শর্তাবলী</a></li>
-                        <li><a href="#" class="hover:text-brand-700">গোপনীয়তা নীতি</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-bold text-gray-900 mb-4">যোগাযোগ</h4>
-                    <ul class="space-y-4 text-sm">
-                        <li>
-                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeKd2ZqZRwi-WOPNQOxXFGsEwLyyeMNWOWyHkMAeAYsNt3kcQ/viewform?usp=send_form" target="_blank" rel="noopener"
-                                class="group flex items-start gap-3 text-gray-500 hover:text-brand-700 transition">
-                                <span class="w-9 h-9 shrink-0 rounded-xl bg-brand-50 flex items-center justify-center text-brand-700 group-hover:bg-brand-100 transition">
-                                    <i class="fa-solid fa-file-pen text-lg"></i>
-                                </span>
-                                <span>
-                                    <span class="block font-semibold text-gray-900 group-hover:text-brand-700">কোর্সে ভর্তি ফর্ম</span>
-                                    <span class="block mt-0.5">অনলাইন আবেদন করুন</span>
-                                </span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="mt-10 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-gray-400 border-t border-gray-100 pt-10">
-                <p>© ২০২৫ ব্যাবেজ একাডেমি। সর্বস্বত্ব সংরক্ষিত।</p>
-                <div class="flex gap-3">
-                    <a href="https://wa.me/8801712383115" target="_blank" rel="noopener" aria-label="WhatsApp"
-                        class="w-10 h-10 rounded-full bg-white border border-gray-200 flex items-center justify-center text-brand-700 hover:bg-brand-50 transition">
-                        <i class="fa-brands fa-whatsapp text-lg"></i>
-                    </a>
-                    <a href="https://www.youtube.com/@babbage.academy" target="_blank" rel="noopener" aria-label="YouTube"
-                        class="w-10 h-10 rounded-full bg-white border border-gray-200 flex items-center justify-center text-brand-700 hover:bg-brand-50 transition">
-                        <i class="fa-brands fa-youtube text-lg"></i>
-                    </a>
-                    <a href="https://www.facebook.com/cbabbage.academy" target="_blank" rel="noopener" aria-label="Facebook"
-                        class="w-10 h-10 rounded-full bg-white border border-gray-200 flex items-center justify-center text-brand-700 hover:bg-brand-50 transition">
-                        <i class="fa-brands fa-facebook-f text-lg"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </footer>
+    <footer id="site-footer"></footer>
 
     <script src="js/courses.js"></script>
+    <script src="js/site.js"></script>
     <script>
         (function () {
             const params = new URLSearchParams(window.location.search);
@@ -324,6 +242,25 @@
                 <p class="flex justify-between"><span class="text-gray-500">ভাষা</span><span class="font-medium text-gray-800">${course.language}</span></p>
                 <p class="flex justify-between"><span class="text-gray-500">সময়</span><span class="font-medium text-gray-800">${course.time}</span></p>`;
 
+            const enrollUrl = getEnrollPageUrl(course.id);
+            document.getElementById('course-hero-enroll').href = enrollUrl;
+            document.getElementById('course-enroll-btn').href = enrollUrl;
+
+            document.getElementById('instructor-card').innerHTML = `
+                <p class="text-xs font-semibold text-brand-700 uppercase tracking-wider">শিক্ষক</p>
+                <div class="flex items-center gap-4 mt-4">
+                    <img src="${INSTRUCTOR.img}" alt="${INSTRUCTOR.name}" class="w-14 h-14 rounded-2xl object-cover" />
+                    <div>
+                        <p class="font-bold text-gray-900">${INSTRUCTOR.name}</p>
+                        <p class="text-sm text-gray-500 mt-0.5">${INSTRUCTOR.title}</p>
+                    </div>
+                </div>
+                <p class="text-sm text-gray-600 mt-4 leading-relaxed line-clamp-3">${INSTRUCTOR.bio}</p>
+                <div class="flex flex-wrap gap-3 mt-4 pt-4 border-t border-gray-100 text-xs text-gray-500">
+                    <span><i class="fa-solid fa-briefcase text-brand-600 mr-1"></i>${INSTRUCTOR.experience}</span>
+                    <span><i class="fa-solid fa-user-graduate text-brand-600 mr-1"></i>${INSTRUCTOR.students} শিক্ষার্থী</span>
+                </div>`;
+
             const related = COURSES.filter((c) => c.id !== course.id);
             document.getElementById('related-courses').innerHTML = related.map((c) => `
                 <a href="course-details.html?id=${c.id}" class="reveal interactive-card rounded-2xl border border-gray-100 shadow-sm overflow-hidden bg-white block">
@@ -356,30 +293,7 @@
                 });
             });
 
-            const progress = document.getElementById('scroll-progress');
-            const header = document.querySelector('.site-header');
-            window.addEventListener('scroll', () => {
-                const scrollTop = window.scrollY;
-                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-                progress.style.transform = `scaleX(${docHeight > 0 ? scrollTop / docHeight : 0})`;
-                header.classList.toggle('scrolled', scrollTop > 24);
-            }, { passive: true });
-
-            const revealEls = document.querySelectorAll('.reveal');
-            const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-            if (!reducedMotion) {
-                const obs = new IntersectionObserver((entries) => {
-                    entries.forEach((entry) => {
-                        if (entry.isIntersecting) {
-                            entry.target.classList.add('revealed');
-                            obs.unobserve(entry.target);
-                        }
-                    });
-                }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-                revealEls.forEach((el) => obs.observe(el));
-            } else {
-                revealEls.forEach((el) => el.classList.add('revealed'));
-            }
+            initSite();
         })();
     </script>
 </body>
