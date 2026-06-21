@@ -5,7 +5,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ব্যাবেজ একাডেমি — হাই স্কুল শিক্ষার্থীদের জন্য প্রোগ্রামিং শেখা</title>
-    <link rel="icon" href="logo.png" type="image/png" />
+    <link rel="icon" href="assets/images/logo.png" type="image/png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -30,318 +31,69 @@
             },
         };
     </script>
-    <style>
-        @font-face {
-            font-family: 'Li Ador Noirrit';
-            src: url('LiAdorNoirritMultiweight/Unicode/Li Ador Noirrit ExtraLight.ttf') format('truetype');
-            font-weight: 200;
-            font-style: normal;
-            font-display: swap;
-        }
-
-        @font-face {
-            font-family: 'Li Ador Noirrit';
-            src: url('LiAdorNoirritMultiweight/Unicode/Li Ador Noirrit Light.ttf') format('truetype');
-            font-weight: 300;
-            font-style: normal;
-            font-display: swap;
-        }
-
-        @font-face {
-            font-family: 'Li Ador Noirrit';
-            src: url('LiAdorNoirritMultiweight/Unicode/Li Ador Noirrit Regular.ttf') format('truetype');
-            font-weight: 400;
-            font-style: normal;
-            font-display: swap;
-        }
-
-        @font-face {
-            font-family: 'Li Ador Noirrit';
-            src: url('LiAdorNoirritMultiweight/Unicode/Li Ador Noirrit SemiBold.ttf') format('truetype');
-            font-weight: 600;
-            font-style: normal;
-            font-display: swap;
-        }
-
-        @font-face {
-            font-family: 'Li Ador Noirrit';
-            src: url('LiAdorNoirritMultiweight/Unicode/Li Ador Noirrit Bold.ttf') format('truetype');
-            font-weight: 700;
-            font-style: normal;
-            font-display: swap;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Li Ador Noirrit', sans-serif;
-        }
-
-        .square-grid {
-            background-image:
-                linear-gradient(to right, rgba(255, 255, 255, 0.18) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(255, 255, 255, 0.18) 1px, transparent 1px);
-            background-size: 64px 64px;
-        }
-
-        .hero-grid {
-            background-image:
-                linear-gradient(to right, rgba(255, 255, 255, 0.35) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(255, 255, 255, 0.35) 1px, transparent 1px);
-            background-size: 70px 70px;
-        }
-
-        .card-leaf-bg {
-            background-image: radial-gradient(rgba(22, 163, 74, 0.05) 1px, transparent 1px);
-            background-size: 14px 14px;
-        }
-
-        .btn-gradient {
-            background: linear-gradient(to bottom, #34c759 0%, #28a745 22%, #1e8f3a 55%, #146b2e 82%, #0f5524 100%);
-            color: #fff;
-            border: none;
-            font-weight: 600;
-            transition: filter 0.2s ease, transform 0.2s ease;
-        }
-
-        .btn-gradient:hover {
-            filter: brightness(1.06);
-            transform: translateY(-1px);
-        }
-
-        .btn-gradient:active {
-            filter: brightness(0.96);
-            transform: translateY(0);
-        }
-
-        @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        @keyframes spin-rev {
-            to {
-                transform: rotate(-360deg);
-            }
-        }
-
-        .gear-slow {
-            animation: spin 18s linear infinite;
-            transform-origin: 50% 50%;
-        }
-
-        .gear-rev {
-            animation: spin-rev 14s linear infinite;
-            transform-origin: 50% 50%;
-        }
-
-        .gear-fast {
-            animation: spin 9s linear infinite;
-            transform-origin: 50% 50%;
-        }
-
-        .dial-window {
-            background: linear-gradient(145deg, #f6d68a, #d99a2b 55%, #a96c12);
-            box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.5), inset 0 -3px 6px rgba(120, 70, 0, 0.45);
-        }
-
-        .dial-strip {
-            animation: dialTick 6s steps(10) infinite;
-        }
-
-        .dial-strip span {
-            height: 3.5rem;
-            line-height: 3.5rem;
-        }
-
-        @keyframes dialTick {
-            to {
-                transform: translateY(-35rem);
-            }
-        }
-
-        #loader {
-            position: fixed;
-            inset: 0;
-            z-index: 100;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 1.75rem;
-            background: #f0fdf4;
-            transition: opacity 0.5s ease, visibility 0.5s ease;
-        }
-
-        #loader.hidden {
-            opacity: 0;
-            visibility: hidden;
-        }
-
-        .loader-text {
-            font-family: 'Li Ador Noirrit', sans-serif;
-            color: #15803d;
-            font-size: clamp(1.25rem, 4vw, 2rem);
-            font-weight: 700;
-        }
-
-        .loader-dots::after {
-            content: '';
-            animation: loaderDots 1.4s steps(4) infinite;
-        }
-
-        @keyframes loaderDots {
-            0% {
-                content: '';
-            }
-
-            25% {
-                content: '.';
-            }
-
-            50% {
-                content: '..';
-            }
-
-            75% {
-                content: '...';
-            }
-        }
-
-        .loader-bar {
-            width: min(60vw, 460px);
-            height: 14px;
-            border-radius: 999px;
-            background: #dcfce7;
-            overflow: hidden;
-        }
-
-        .loader-fill {
-            height: 100%;
-            width: 0;
-            border-radius: 999px;
-            background: linear-gradient(to right, #16a34a, #22c55e);
-            animation: loaderFill 2.4s ease-out forwards;
-        }
-
-        @keyframes loaderFill {
-            to {
-                width: 100%;
-            }
-        }
-
-        .loader-pct {
-            font-family: 'Li Ador Noirrit', sans-serif;
-            color: #16a34a;
-            font-size: 0.95rem;
-            font-weight: 600;
-        }
-
-        @keyframes float {
-
-            0%,
-            100% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(-8px);
-            }
-        }
-
-        .code-snippet {
-            font-family: 'Consolas', 'Courier New', monospace;
-            font-size: 0.75rem;
-            direction: ltr;
-            text-align: left;
-        }
-    </style>
+    <link rel="stylesheet" href="css/site.css" />
 </head>
 
-<body class="text-gray-800 antialiased overflow-x-hidden">
+<body class="text-gray-800 antialiased overflow-x-hidden site-ready">
 
-    <!-- লোডিং স্ক্রিন -->
-    <div id="loader">
-        <p class="loader-text">লোড হচ্ছে<span class="loader-dots"></span></p>
-        <div class="loader-bar">
-            <div class="loader-fill"></div>
-        </div>
-        <p class="loader-pct" id="loader-pct">০%</p>
-    </div>
-    <script>
-        (function () {
-            const loader = document.getElementById('loader');
-            const pct = document.getElementById('loader-pct');
-            const bnDigits = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
-            const toBn = n => String(n).split('').map(d => bnDigits[+d] ?? d).join('');
-            const DURATION = 2400;
-            const start = performance.now();
-            function tick(now) {
-                const p = Math.min(100, Math.round(((now - start) / DURATION) * 100));
-                pct.textContent = toBn(p) + '%';
-                if (p < 100) {
-                    requestAnimationFrame(tick);
-                } else {
-                    loader.classList.add('hidden');
-                    setTimeout(() => loader.remove(), 600);
-                }
-            }
-            requestAnimationFrame(tick);
-        })();
-    </script>
+    <div id="scroll-progress" aria-hidden="true"></div>
 
-    <!-- হেডার + হিরো -->
-    <div class="relative bg-gradient-to-b from-brand-100 via-brand-50 to-white overflow-hidden">
+    <!-- হেডার -->
+    <header class="site-header sticky top-0 z-30">
+        <nav class="max-w-7xl mx-auto px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-2.5 group">
+                <img src="assets/images/logo.png" alt="ব্যাবেজ একাডেমি লোগো"
+                    class="w-11 h-11 object-contain transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3" />
+                <span class="font-bold text-xl md:text-2xl text-gray-900">ব্যাবেজ একাডেমি</span>
+            </a>
+            <ul class="hidden md:flex items-center gap-8 text-[15px] font-medium text-gray-600">
+                <li><a href="#" class="nav-link hover:text-brand-700 transition" data-section="home">হোম</a></li>
+                <li><a href="all-courses.html" class="nav-link hover:text-brand-700 transition" data-section="courses">সব কোর্স</a>
+                </li>
+                <li><a href="#features" class="nav-link hover:text-brand-700 transition"
+                        data-section="features">বৈশিষ্ট্য</a></li>
+                <li><a href="#faq" class="nav-link hover:text-brand-700 transition" data-section="faq">প্রশ্নোত্তর</a>
+                </li>
+                <li><a href="#contact" class="nav-link hover:text-brand-700 transition"
+                        data-section="contact">যোগাযোগ</a></li>
+            </ul>
+            <div class="flex items-center gap-4">
+                <a href="#"
+                    class="hidden sm:inline text-[15px] font-medium text-gray-700 hover:text-brand-700 transition">নিবন্ধন</a>
+                <a href="#" class="btn-gradient btn-shine px-6 py-2.5 rounded-full text-white text-[14px]">লগ ইন</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- হিরো -->
+    <div id="home" class="relative bg-gradient-to-b from-brand-100 via-brand-50 to-white overflow-hidden">
         <div
             class="hero-grid absolute top-0 right-0 w-1/2 h-full opacity-60 [mask-image:linear-gradient(to_left,black,transparent)]">
         </div>
 
-        <header class="relative z-20">
-            <nav class="max-w-7xl mx-auto px-6 lg:px-8 h-20 flex items-center justify-between">
-                <a href="#" class="flex items-center gap-2.5">
-                    <img src="logo.png" alt="ব্যাবেজ একাডেমি লোগো" class="w-11 h-11 object-contain" />
-                    <span class="font-bold text-xl md:text-2xl text-gray-900">ব্যাবেজ একাডেমি</span>
-                </a>
-                <ul class="hidden md:flex items-center gap-8 text-[15px] font-medium text-gray-600">
-                    <li><a href="#" class="hover:text-brand-700 transition">হোম</a></li>
-                    <li><a href="#courses" class="hover:text-brand-700 transition">কোর্স</a></li>
-                    <li><a href="#features" class="hover:text-brand-700 transition">বৈশিষ্ট্য</a></li>
-                    <li><a href="#faq" class="hover:text-brand-700 transition">প্রশ্নোত্তর</a></li>
-                    <li><a href="#contact" class="hover:text-brand-700 transition">যোগাযোগ</a></li>
-                </ul>
-                <div class="flex items-center gap-4">
-                    <a href="#"
-                        class="hidden sm:inline text-[15px] font-medium text-gray-700 hover:text-brand-700 transition">নিবন্ধন</a>
-                    <a href="#" class="btn-gradient px-6 py-2.5 rounded-full text-white text-[14px]">লগ ইন</a>
-                </div>
-            </nav>
-        </header>
-
         <section class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 pt-10 pb-4 text-center">
             <span
-                class="inline-block px-4 py-1.5 rounded-full bg-white/80 border border-brand-200 text-brand-800 text-sm font-semibold shadow-sm">
-                🎓 ক্লাস ৯–১২ শিক্ষার্থীদের জন্য
+                class="hero-enter hero-enter-d1 inline-block px-4 py-1.5 rounded-full bg-white/80 border border-brand-200 text-brand-800 text-sm font-semibold shadow-sm">
+                🎓 স্কুল ও কলেজ শিক্ষার্থীদের জন্য
             </span>
             <h1
-                class="font-bold text-gray-900 text-4xl md:text-5xl lg:text-[56px] leading-[1.45] md:leading-[1.5] tracking-tight mt-6">
-                প্রোগ্রামিং শেখো সহজে,<br />ICT সিলেবাস মাথায় রেখে
+                class="hero-enter hero-enter-d2 font-bold text-gray-900 text-4xl md:text-5xl lg:text-[56px] leading-[1.15] md:leading-[1.2] tracking-tight mt-6">
+                প্রোগ্রামিং শেখো বাংলায়,<br />নিজের গতিতে ও সহজে
             </h1>
-            <p class="mt-6 max-w-2xl mx-auto text-lg text-gray-600 leading-relaxed">
-                পাইথন, সি এবং প্রতিযোগিতামূলক প্রোগ্রামিং — সব কিছু বাংলায়, ধাপে ধাপে।
-                হাই স্কুলের ICT বইয়ের সাথে মিল রেখে প্রস্তুত করা কোর্স।
+            <p class="hero-enter hero-enter-d3 mt-6 max-w-2xl mx-auto text-lg text-gray-600 leading-relaxed">
+                পাইথন, সি, প্রতিযোগিতামূলক প্রোগ্রামিং ও NHSPC — শূন্য থেকে শুরু, ধাপে ধাপে।
+                পড়াশোনা, প্রজেক্ট ও ক্যারিয়ার — সব এক প্ল্যাটফর্মে।
             </p>
-            <div class="mt-9 flex flex-wrap items-center justify-center gap-4">
-                <a href="#courses" class="btn-gradient px-8 py-3.5 rounded-full text-white text-[15px]">শেখা শুরু
+            <div class="hero-enter hero-enter-d4 mt-9 flex flex-wrap items-center justify-center gap-4">
+                <a href="#courses" class="btn-gradient btn-shine px-8 py-3.5 rounded-full text-white text-[15px]">শেখা
+                    শুরু
                     করো</a>
-                <a href="#courses"
-                    class="px-6 py-3 rounded-full bg-white text-gray-800 text-[15px] font-semibold border border-gray-200 hover:border-brand-600 hover:text-brand-700 transition shadow-sm">সব
+                <a href="all-courses.html"
+                    class="px-6 py-3 rounded-full bg-white text-gray-800 text-[15px] font-semibold border border-gray-200 hover:border-brand-600 hover:text-brand-700 hover:shadow-md transition-all duration-300 shadow-sm">সব
                     কোর্স দেখো</a>
             </div>
 
-            <div class="relative mt-10 max-w-3xl mx-auto h-[420px]">
+            <div class="hero-visual relative mt-10 max-w-3xl mx-auto h-[420px]" id="hero-visual">
                 <div class="absolute inset-0 z-0 pointer-events-none">
                     <svg class="gear-slow absolute top-6 left-10 w-28 h-28 text-amber-500/40" viewBox="0 0 24 24"
                         fill="currentColor">
@@ -360,51 +112,52 @@
                     </svg>
                 </div>
 
-                <img src="pc.gif" alt="রেট্রো কম্পিউটার"
-                    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[380px] w-auto object-contain mix-blend-multiply" />
+                <img src="assets/images/pc.gif" alt="রেট্রো কম্পিউটার" id="hero-pc"
+                    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[380px] w-auto object-contain mix-blend-multiply transition-transform duration-100 ease-out will-change-transform" />
 
                 <div
-                    class="absolute top-20 left-2 md:left-6 bg-white rounded-2xl shadow-lg px-4 py-3 flex items-center gap-3 animate-[float_4s_ease-in-out_infinite]">
+                    class="stat-card animate-glow-4 absolute top-20 left-2 md:left-6 bg-white rounded-2xl shadow-lg px-4 py-3 flex items-center gap-3">
                     <span class="w-10 h-10 rounded-xl bg-accent flex items-center justify-center text-white">
-                        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 2l2.9 6.2 6.6.6-5 4.4 1.5 6.6L12 17l-6 3.4 1.5-6.6-5-4.4 6.6-.6z" />
-                        </svg>
-                    </span>
-                    <div class="text-left leading-tight">
-                        <p class="font-bold text-gray-900">৪.৯/৫</p>
-                        <p class="text-xs text-gray-500">গড় রেটিং</p>
-                    </div>
-                </div>
-
-                <div
-                    class="absolute top-16 right-2 md:right-6 bg-white rounded-2xl shadow-lg px-4 py-3 flex items-center gap-3 animate-[float_5s_ease-in-out_infinite]">
-                    <span class="w-10 h-10 rounded-xl bg-sky-400 flex items-center justify-center text-white">
-                        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 12a5 5 0 100-10 5 5 0 000 10zm0 2c-5 0-9 2.5-9 6v2h18v-2c0-3.5-4-6-9-6z" />
-                        </svg>
-                    </span>
-                    <div class="text-left leading-tight">
-                        <p class="font-bold text-gray-900">৫,০০০+</p>
-                        <p class="text-xs text-gray-500">শিক্ষার্থী</p>
-                    </div>
-                </div>
-
-                <div
-                    class="absolute bottom-16 right-0 md:right-4 bg-white rounded-2xl shadow-lg px-4 py-3 flex items-center gap-3 animate-[float_4.5s_ease-in-out_infinite]">
-                    <span class="w-10 h-10 rounded-xl bg-indigo-400 flex items-center justify-center text-white">
-                        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path
-                                d="M19 4h-1V2h-2v2H8V2H6v2H5a2 2 0 00-2 2v13a2 2 0 002 2h14a2 2 0 002-2V6a2 2 0 00-2-2zm0 15H5V9h14v10z" />
+                                d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                         </svg>
                     </span>
                     <div class="text-left leading-tight">
-                        <p class="font-bold text-gray-900">৫০+</p>
-                        <p class="text-xs text-gray-500">সাপ্তাহিক পাঠ</p>
+                        <p class="font-bold text-gray-900">বাংলায়</p>
+                        <p class="text-xs text-gray-500">সম্পূর্ণ বাংলা পাঠ</p>
                     </div>
                 </div>
 
                 <div
-                    class="absolute bottom-24 left-10 md:left-20 z-10 dial-window w-14 h-14 rounded-full overflow-hidden shadow-lg ring-4 ring-amber-700/30 animate-[float_3.5s_ease-in-out_infinite]">
+                    class="stat-card animate-glow-5 absolute top-16 right-2 md:right-6 bg-white rounded-2xl shadow-lg px-4 py-3 flex items-center gap-3">
+                    <span class="w-10 h-10 rounded-xl bg-sky-400 flex items-center justify-center text-white">
+                        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path
+                                d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                        </svg>
+                    </span>
+                    <div class="text-left leading-tight">
+                        <p class="font-bold text-gray-900">ICT সিলেবাস</p>
+                        <p class="text-xs text-gray-500">NCTB বই অনুযায়ী</p>
+                    </div>
+                </div>
+
+                <div
+                    class="stat-card animate-glow-45 absolute bottom-16 right-0 md:right-4 bg-white rounded-2xl shadow-lg px-4 py-3 flex items-center gap-3">
+                    <span class="w-10 h-10 rounded-xl bg-indigo-400 flex items-center justify-center text-white">
+                        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                    </span>
+                    <div class="text-left leading-tight">
+                        <p class="font-bold text-gray-900">শূন্য থেকে</p>
+                        <p class="text-xs text-gray-500">অভিজ্ঞতা লাগে না</p>
+                    </div>
+                </div>
+
+                <div
+                    class="absolute bottom-24 left-10 md:left-20 z-10 dial-window animate-glow-35 w-14 h-14 rounded-full overflow-hidden shadow-lg ring-4 ring-amber-700/30">
                     <div class="dial-strip font-bold text-2xl text-amber-950 text-center w-full">
                         <span class="block">০</span><span class="block">১</span><span class="block">২</span><span
                             class="block">৩</span><span class="block">৪</span>
@@ -416,82 +169,115 @@
         </section>
     </div>
 
-    <!-- বিশ্বাস -->
-    <section class="border-b border-gray-100">
+    <!-- প্রোগ্রামিং ভাষা -->
+    <section class="border-b border-gray-100 overflow-hidden">
         <div class="max-w-6xl mx-auto px-6 lg:px-8 py-10">
-            <p class="text-center text-sm text-gray-400">বাংলাদেশের শিক্ষার্থী ও শিক্ষকরা আমাদের উপর বিশ্বাস রাখেন</p>
-            <div
-                class="mt-7 flex flex-wrap items-center justify-center gap-x-8 gap-y-4 text-gray-500 font-semibold text-base md:text-lg">
-                <span>ঢাকা বোর্ড</span>
-                <span class="hidden md:inline text-gray-200">|</span>
-                <span>রাজশাহী বোর্ড</span>
-                <span class="hidden md:inline text-gray-200">|</span>
-                <span>চট্টগ্রাম বোর্ড</span>
-                <span class="hidden md:inline text-gray-200">|</span>
-                <span>NHSPC</span>
-                <span class="hidden md:inline text-gray-200">|</span>
-                <span>ICT ক্লাব</span>
+            <p class="reveal text-center text-sm text-gray-400">আমরা যে প্রোগ্রামিং ভাষা ও বিষয়গুলো শেখাই</p>
+            <div class="marquee-wrap mt-7">
+                <div class="marquee-track flex items-center gap-10 text-gray-500 font-semibold text-base md:text-lg">
+                    <span class="shrink-0 text-brand-700">Python</span>
+                    <span class="text-brand-300 shrink-0">✦</span>
+                    <span class="shrink-0">C</span>
+                    <span class="text-brand-300 shrink-0">✦</span>
+                    <span class="shrink-0 text-brand-700">JavaScript</span>
+                    <span class="text-brand-300 shrink-0">✦</span>
+                    <span class="shrink-0">HTML</span>
+                    <span class="text-brand-300 shrink-0">✦</span>
+                    <span class="shrink-0">CSS</span>
+                    <span class="text-brand-300 shrink-0">✦</span>
+                    <span class="shrink-0">Algorithm</span>
+                    <span class="text-brand-300 shrink-0">✦</span>
+                    <span class="shrink-0 text-brand-700">NHSPC</span>
+                    <span class="text-brand-300 shrink-0">✦</span>
+                    <span class="shrink-0">Git</span>
+                    <span class="text-brand-300 shrink-0">✦</span>
+                    <span class="shrink-0">SQL</span>
+                    <span class="text-brand-300 shrink-0">✦</span>
+                    <span class="shrink-0">Logic Building</span>
+                    <span class="text-brand-300 shrink-0">✦</span>
+                    <!-- duplicate for seamless loop -->
+                    <span class="shrink-0 text-brand-700">Python</span>
+                    <span class="text-brand-300 shrink-0">✦</span>
+                    <span class="shrink-0">C</span>
+                    <span class="text-brand-300 shrink-0">✦</span>
+                    <span class="shrink-0 text-brand-700">JavaScript</span>
+                    <span class="text-brand-300 shrink-0">✦</span>
+                    <span class="shrink-0">HTML</span>
+                    <span class="text-brand-300 shrink-0">✦</span>
+                    <span class="shrink-0">CSS</span>
+                    <span class="text-brand-300 shrink-0">✦</span>
+                    <span class="shrink-0">Algorithm</span>
+                    <span class="text-brand-300 shrink-0">✦</span>
+                    <span class="shrink-0 text-brand-700">NHSPC</span>
+                    <span class="text-brand-300 shrink-0">✦</span>
+                    <span class="shrink-0">Git</span>
+                    <span class="text-brand-300 shrink-0">✦</span>
+                    <span class="shrink-0">SQL</span>
+                    <span class="text-brand-300 shrink-0">✦</span>
+                    <span class="shrink-0">Logic Building</span>
+                    <span class="text-brand-300 shrink-0">✦</span>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- শেখার সুবিধা -->
+    <!-- স্কুল ও কলেজ শিক্ষার্থীদের জন্য বিশেষ সুবিধা -->
     <section id="features" class="max-w-7xl mx-auto px-6 lg:px-8 py-20">
-        <p class="text-accent font-bold tracking-wider text-sm uppercase">আমাদের শেখার পদ্ধতি</p>
-        <h2 class="font-bold text-gray-900 text-3xl md:text-[42px] leading-tight mt-3">
-            হাই স্কুল শিক্ষার্থীদের জন্য<br class="hidden md:block" /> যা যা দরকার — সব এক জায়গায়
+        <p class="reveal text-accent font-bold tracking-wider text-sm uppercase">বিশেষ সুবিধা</p>
+        <h2 class="reveal font-bold text-gray-900 text-3xl md:text-[42px] leading-tight mt-3"
+            style="transition-delay:0.1s">
+            স্কুল ও কলেজ শিক্ষার্থীদের জন্য<br class="hidden md:block" /> বিশেষ সুবিধা
         </h2>
 
         <div class="grid md:grid-cols-3 gap-6 mt-12">
-            <div
-                class="relative card-leaf-bg rounded-2xl border border-gray-100 shadow-sm p-8 text-center overflow-hidden hover:shadow-md transition">
-                <div class="w-14 h-14 mx-auto flex items-center justify-center rounded-2xl bg-brand-100 text-brand-700">
-                    <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                        <path
-                            d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                    </svg>
+            <div class="reveal interactive-card relative card-leaf-bg rounded-2xl border border-gray-100 shadow-sm p-8 text-left overflow-hidden"
+                style="transition-delay:0.05s">
+                <div
+                    class="card-icon w-14 h-14 flex items-center justify-center rounded-2xl bg-brand-100 text-brand-700">
+                    <i class="fa-solid fa-flask-vial text-2xl"></i>
                 </div>
-                <h3 class="font-bold text-xl text-gray-900 mt-5">ICT সিলেবাস অনুযায়ী</h3>
-                <p class="text-gray-500 text-sm mt-3 leading-relaxed">NCTB বইয়ের অধ্যায় অনুযায়ী সাজানো পাঠ। বোর্ড
-                    পরীক্ষা ও ICT প্র্যাকটিক্যাল — দুটোই কভার।</p>
+                <h3 class="font-bold text-xl text-gray-900 mt-5">বিজ্ঞান মেলা ও প্রযুক্তি প্রজেক্ট সহায়তা</h3>
+                <p class="text-gray-500 text-sm mt-3 leading-relaxed">প্রজেক্টের আইডিয়া, ডিজাইন, ডেভেলপমেন্ট, রিপোর্ট
+                    প্রস্তুতকরণ এবং চূড়ান্ত উপস্থাপনা পর্যন্ত সম্পূর্ণ সহায়তা। স্কুল, কলেজ ও জাতীয় পর্যায়ের বিজ্ঞান
+                    মেলা এবং প্রতিযোগিতার জন্য উদ্ভাবনী প্রযুক্তি প্রজেক্ট তৈরি করার সুযোগ।</p>
             </div>
 
-            <div
-                class="relative card-leaf-bg rounded-2xl border border-gray-100 shadow-sm p-8 text-center overflow-hidden hover:shadow-md transition">
-                <div class="w-14 h-14 mx-auto flex items-center justify-center rounded-2xl bg-brand-100 text-brand-700">
-                    <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                        <rect x="3" y="4" width="18" height="16" rx="2" />
-                        <path d="M3 9h18M8 4v5" />
-                    </svg>
+            <div class="reveal interactive-card relative card-leaf-bg rounded-2xl border border-gray-100 shadow-sm p-8 text-left overflow-hidden"
+                style="transition-delay:0.15s">
+                <div
+                    class="card-icon w-14 h-14 flex items-center justify-center rounded-2xl bg-brand-100 text-brand-700">
+                    <i class="fa-solid fa-file-pen text-2xl"></i>
                 </div>
-                <h3 class="font-bold text-xl text-gray-900 mt-5">হাতে-কলমে প্রজেক্ট</h3>
-                <p class="text-gray-500 text-sm mt-3 leading-relaxed">ক্যালকুলেটর, গেম, ডাটা অ্যানালাইসিস — ছোট ছোট
-                    প্রজেক্ট করে প্রোগ্রামিং শেখো। শুধু তত্ত্ব নয়, কোড লিখে শেখো।</p>
+                <h3 class="font-bold text-xl text-gray-900 mt-5">রিপোর্ট ও ডকুমেন্টেশন সহায়তা</h3>
+                <p class="text-gray-500 text-sm mt-3 leading-relaxed">প্রজেক্ট রিপোর্ট লেখা, ডকুমেন্টেশন প্রস্তুত করা
+                    এবং প্রযুক্তিগত বিষয় সহজ ভাষায় উপস্থাপনের জন্য বিশেষ সহায়তা। যাতে বিচারক ও শিক্ষকদের কাছে আপনার
+                    প্রজেক্ট আরও গ্রহণযোগ্য, সুসংগঠিত এবং প্রভাবশালীভাবে উপস্থাপন করা যায়।</p>
             </div>
 
-            <div
-                class="relative card-leaf-bg rounded-2xl border border-gray-100 shadow-sm p-8 text-center overflow-hidden hover:shadow-md transition">
-                <div class="w-14 h-14 mx-auto flex items-center justify-center rounded-2xl bg-brand-100 text-brand-700">
-                    <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                        <circle cx="12" cy="8" r="4" />
-                        <path d="M6 20v-1a6 6 0 0112 0v1" />
-                    </svg>
+            <div class="reveal interactive-card relative card-leaf-bg rounded-2xl border border-gray-100 shadow-sm p-8 text-left overflow-hidden"
+                style="transition-delay:0.25s">
+                <div
+                    class="card-icon w-14 h-14 flex items-center justify-center rounded-2xl bg-brand-100 text-brand-700">
+                    <i class="fa-solid fa-handshake text-2xl"></i>
                 </div>
-                <h3 class="font-bold text-xl text-gray-900 mt-5">মেন্টর সহায়তা</h3>
-                <p class="text-gray-500 text-sm mt-3 leading-relaxed">আটকে গেলে সাহায্য পাবে। অভিজ্ঞ শিক্ষক ও সিনিয়র
-                    প্রোগ্রামাররা বাংলায় প্রশ্নের উত্তর দেন।</p>
+                <h3 class="font-bold text-xl text-gray-900 mt-5">ফ্রি ক্যারিয়ার ও কোর্স পরামর্শ</h3>
+                <p class="text-gray-500 text-sm mt-3 leading-relaxed">সম্পূর্ণ বিনামূল্যে একটি পরামর্শ সেশন বুক করুন।
+                    আমাদের অভিজ্ঞ টিম আপনার আগ্রহ, লক্ষ্য ও ভবিষ্যৎ পরিকল্পনা অনুযায়ী সঠিক কোর্স নির্বাচন, ভর্তি
+                    প্রক্রিয়া এবং সম্ভাব্য ক্যারিয়ার পথ সম্পর্কে দিকনির্দেশনা প্রদান করবে।</p>
             </div>
         </div>
     </section>
 
     <!-- কোর্স -->
     <section id="courses" class="max-w-7xl mx-auto px-6 lg:px-8 py-10">
-        <div class="flex items-end justify-between flex-wrap gap-4">
+        <div class="reveal flex items-end justify-between flex-wrap gap-4">
             <div>
                 <p class="text-accent font-bold tracking-wider text-sm uppercase">কোর্সসমূহ</p>
                 <h2 class="font-bold text-gray-900 text-3xl md:text-[42px] mt-3">তোমার পছন্দের কোর্স বেছে নাও</h2>
             </div>
-            <a href="#" class="text-brand-700 font-semibold hover:underline">সব কোর্স দেখো →</a>
+            <a href="all-courses.html"
+                class="text-brand-700 font-semibold hover:underline transition-all hover:opacity-80 inline-block">সব
+                কোর্স দেখো →</a>
         </div>
         <div id="course-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-7 mt-12"></div>
     </section>
@@ -550,18 +336,44 @@
     </section>
     -->
 
-    <!-- মতামত -->
+    <!-- ক্লাসে অংশগ্রহণের জন্য যা প্রয়োজন -->
     <section class="bg-gradient-to-b from-white via-brand-50 to-white py-20">
-        <div class="max-w-7xl mx-auto px-6 lg:px-8 text-center">
-            <p class="text-accent font-bold tracking-wider text-sm uppercase">শিক্ষার্থীদের মতামত</p>
-            <h2 class="font-bold text-gray-900 text-3xl md:text-[42px] mt-3">আমাদের শিক্ষার্থীরা কী বলেন</h2>
-            <div id="testimonial-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-12 text-left"></div>
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <p class="reveal text-accent font-bold tracking-wider text-sm uppercase">ক্লাসে যোগ দিতে</p>
+            <h2 class="reveal font-bold text-gray-900 text-3xl md:text-[42px] mt-3" style="transition-delay:0.1s">
+                ক্লাসে অংশগ্রহণের জন্য যা প্রয়োজন
+            </h2>
+
+            <div class="grid md:grid-cols-2 gap-6 mt-12">
+                <div class="reveal interactive-card relative card-leaf-bg rounded-2xl border border-gray-100 shadow-sm p-8 text-left overflow-hidden"
+                    style="transition-delay:0.05s">
+                    <div
+                        class="card-icon w-14 h-14 flex items-center justify-center rounded-2xl bg-brand-100 text-brand-700">
+                        <i class="fa-solid fa-wifi text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-xl text-gray-900 mt-5">স্থিতিশীল ইন্টারনেট সংযোগ</h3>
+                    <p class="text-gray-500 text-sm mt-3 leading-relaxed">WiFi বা mobile data — যেকোনো একটি থাকলেই আপনি
+                        যেকোনো জায়গা থেকে লাইভ ক্লাসে অংশ নিতে পারবেন।</p>
+                </div>
+
+                <div class="reveal interactive-card relative card-leaf-bg rounded-2xl border border-gray-100 shadow-sm p-8 text-left overflow-hidden"
+                    style="transition-delay:0.15s">
+                    <div
+                        class="card-icon w-14 h-14 flex items-center justify-center rounded-2xl bg-brand-100 text-brand-700">
+                        <i class="fa-solid fa-laptop  text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-xl text-gray-900 mt-5">যেকোনো ডিভাইস</h3>
+                    <p class="text-gray-500 text-sm mt-3 leading-relaxed">একটি স্মার্টফোন, ট্যাবলেট বা কম্পিউটার —
+                        যেকোনো ডিভাইস থেকে ক্লাসে যোগ দিতে পারেন। আমাদের প্ল্যাটফর্ম সব ডিভাইসের সাথে সামঞ্জস্যপূর্ণ।
+                    </p>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- CTA -->
     <section class="max-w-7xl mx-auto px-6 lg:px-8 py-10">
-        <div class="relative rounded-3xl overflow-hidden bg-gradient-to-r from-brand-100 to-brand-500">
+        <div class="reveal-scale relative rounded-3xl overflow-hidden bg-gradient-to-r from-brand-100 to-brand-500">
             <div class="square-grid absolute inset-0 opacity-70"></div>
             <div class="relative grid md:grid-cols-2 items-center">
                 <div class="p-10 md:p-14">
@@ -570,17 +382,25 @@
                     <p class="mt-4 text-gray-700 max-w-md leading-relaxed">বাংলায় সহজ পাঠ, হাতে-কলমে প্রজেক্ট, এবং
                         NHSPC-র জন্য প্রস্তুতি — সব কিছু এক প্ল্যাটফর্মে। আজই বিনামূল্যে শুরু করো।</p>
                     <a href="#courses"
-                        class="btn-gradient inline-block mt-7 px-8 py-4 rounded-full text-white">বিনামূল্যে শেখা শুরু
+                        class="btn-gradient btn-shine inline-block mt-7 px-8 py-4 rounded-full text-white">বিনামূল্যে
+                        শেখা শুরু
                         করো</a>
                 </div>
                 <div class="relative h-64 md:h-80 hidden md:block">
-                    <div
-                        class="absolute bottom-6 right-8 bg-gray-900 rounded-xl p-4 shadow-2xl code-snippet text-green-400 w-64">
-                        <p class="text-gray-500"># প্রথম প্রোগ্রাম</p>
-                        <p><span class="text-purple-400">print</span>(<span class="text-yellow-300">"হ্যালো,
-                                বিশ্ব!"</span>)</p>
-                        <p class="text-gray-500 mt-2"># আউটপুট:</p>
-                        <p class="text-white">হ্যালো, বিশ্ব!</p>
+                    <div class="absolute bottom-6 right-8 w-64">
+                        <div
+                            class="code-terminal relative bg-gray-900 rounded-xl p-4 shadow-2xl code-snippet text-green-400 w-full">
+                            <div class="flex gap-1.5 mb-3">
+                                <span class="w-2.5 h-2.5 rounded-full bg-red-400"></span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-yellow-400"></span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-green-400"></span>
+                            </div>
+                            <p class="text-gray-500"># প্রথম প্রোগ্রাম</p>
+                            <p><span class="text-purple-400">print</span>(<span class="text-yellow-300 typing-cursor"
+                                    id="typing-line">""</span>)</p>
+                            <p class="text-gray-500 mt-2"># আউটপুট:</p>
+                            <p class="text-white" id="typing-output"></p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -591,13 +411,13 @@
     <section id="faq" class="max-w-7xl mx-auto px-6 lg:px-8 py-20">
         <div class="grid md:grid-cols-2 gap-12">
             <div>
-                <p class="text-accent font-bold tracking-wider text-sm uppercase">প্রশ্নোত্তর</p>
-                <h2 class="font-bold text-gray-900 text-3xl md:text-[42px] leading-tight mt-3">
+                <p class="reveal-left text-accent font-bold tracking-wider text-sm uppercase">প্রশ্নোত্তর</p>
+                <h2 class="reveal-left font-bold text-gray-900 text-3xl md:text-[42px] leading-tight mt-3"
+                    style="transition-delay:0.1s">
                     ব্যাবেজ একাডেমি নিয়ে যা <br> জানতে হবে
-
                 </h2>
             </div>
-            <div id="faq-list" class="divide-y divide-gray-200"></div>
+            <div id="faq-list" class="reveal divide-y divide-gray-200" style="transition-delay:0.15s"></div>
         </div>
     </section>
 
@@ -608,11 +428,12 @@
                 <div>
                     <h4 class="font-bold text-gray-900 mb-4">কোর্স</h4>
                     <ul class="space-y-3 text-sm text-gray-500">
-                        <li><a href="#" class="hover:text-brand-700">পাইথন + ICT</a></li>
-                        <li><a href="#" class="hover:text-brand-700">সি + ICT</a></li>
-                        <li><a href="#" class="hover:text-brand-700">NHSPC প্রস্তুতি</a></li>
+                        <li><a href="course-details.html?id=python-ict" class="hover:text-brand-700">পাইথন + ICT</a></li>
+                        <li><a href="course-details.html?id=c-ict" class="hover:text-brand-700">সি + ICT</a></li>
+                        <li><a href="course-details.html?id=nhspc-prep" class="hover:text-brand-700">NHSPC প্রস্তুতি</a></li>
                         <li><a href="#" class="hover:text-brand-700">অ্যালগরিদম বেসিক</a></li>
-                        <li><a href="#" class="hover:text-brand-700">সব কোর্স</a></li>
+                        <li><a href="all-courses.html" class="hover:text-brand-700">সব কোর্স</a></li>
+                        <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSeKd2ZqZRwi-WOPNQOxXFGsEwLyyeMNWOWyHkMAeAYsNt3kcQ/viewform?usp=send_form" target="_blank" rel="noopener" class="hover:text-brand-700">কোর্সে ভর্তি ফর্ম</a></li>
                     </ul>
                 </div>
                 <div>
@@ -636,12 +457,21 @@
                     </ul>
                 </div>
                 <div>
-                    <h4 class="font-bold text-gray-900 mb-4">শুরু করো</h4>
-                    <ul class="space-y-3 text-sm text-gray-500">
-                        <li><a href="#" class="hover:text-brand-700">অ্যাকাউন্ট তৈরি</a></li>
-                        <li><a href="#" class="hover:text-brand-700">বিনামূল্যে শুরু</a></li>
-                        <li><a href="#" class="hover:text-brand-700">মূল্য তালিকা</a></li>
-                        <li><a href="#" class="hover:text-brand-700">স্কুল/কলেজ পার্টনার</a></li>
+                    <h4 class="font-bold text-gray-900 mb-4">যোগাযোগ</h4>
+                    <ul class="space-y-4 text-sm">
+                        <li>
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeKd2ZqZRwi-WOPNQOxXFGsEwLyyeMNWOWyHkMAeAYsNt3kcQ/viewform?usp=send_form" target="_blank" rel="noopener"
+                                class="group flex items-start gap-3 text-gray-500 hover:text-brand-700 transition">
+                                <span
+                                    class="w-9 h-9 shrink-0 rounded-xl bg-brand-50 flex items-center justify-center text-brand-700 group-hover:bg-brand-100 transition">
+                                    <i class="fa-solid fa-file-pen text-lg"></i>
+                                </span>
+                                <span>
+                                    <span class="block font-semibold text-gray-900 group-hover:text-brand-700">কোর্সে ভর্তি ফর্ম</span>
+                                    <span class="block mt-0.5">অনলাইন আবেদন করুন</span>
+                                </span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -650,7 +480,7 @@
                 class="mt-14 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 border-t border-gray-100 pt-10">
                 <div>
                     <h3 class="font-bold text-2xl text-gray-900">নতুন কোর্স ও টিপস পেতে সাবস্ক্রাইব করো</h3>
-                    <p class="text-sm text-gray-500 mt-2">৫,০০০+ শিক্ষার্থী আমাদের নিউজলেটার পান।</p>
+                    <p class="text-sm text-gray-500 mt-2">প্রথম শিক্ষার্থীদের জন্য — আপডেট ও নতুন কোর্সের খবর পাবে।</p>
                 </div>
                 <form class="flex items-center gap-3 w-full max-w-md">
                     <input type="email" placeholder="তোমার ইমেইল লেখো"
@@ -667,113 +497,32 @@
                             class="hover:text-brand-700 underline underline-offset-2" target="_blank"
                             rel="noopener">lipighor.com</a></p>
                 </div>
-                <div class="flex items-center gap-4">
-                    <a href="#" aria-label="Facebook" class="hover:text-brand-700"><svg class="w-5 h-5"
-                            viewBox="0 0 24 24" fill="currentColor">
-                            <path
-                                d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-                        </svg></a>
-                    <a href="#" aria-label="YouTube" class="hover:text-brand-700"><svg class="w-5 h-5"
-                            viewBox="0 0 24 24" fill="currentColor">
-                            <path
-                                d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
-                        </svg></a>
-                    <a href="#" aria-label="Instagram" class="hover:text-brand-700"><svg class="w-5 h-5"
-                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <rect x="3" y="3" width="18" height="18" rx="5" />
-                            <circle cx="12" cy="12" r="4" />
-                            <circle cx="17" cy="7" r="1" fill="currentColor" />
-                        </svg></a>
+                <div class="flex flex-wrap items-center justify-center sm:justify-end gap-3">
+                    <a href="https://wa.me/8801712383115" target="_blank" rel="noopener" aria-label="WhatsApp Us"
+                        class="w-10 h-10 rounded-full bg-white border border-gray-200 flex items-center justify-center text-brand-700 hover:bg-brand-50 hover:border-brand-200 transition">
+                        <i class="fa-brands fa-whatsapp text-lg"></i>
+                    </a>
+                    <a href="https://www.youtube.com/@babbage.academy" target="_blank" rel="noopener"
+                        aria-label="Subscribe on YouTube"
+                        class="w-10 h-10 rounded-full bg-white border border-gray-200 flex items-center justify-center text-brand-700 hover:bg-brand-50 hover:border-brand-200 transition">
+                        <i class="fa-brands fa-youtube text-lg"></i>
+                    </a>
+                    <a href="https://www.facebook.com/cbabbage.academy" target="_blank" rel="noopener"
+                        aria-label="Follow on Facebook"
+                        class="w-10 h-10 rounded-full bg-white border border-gray-200 flex items-center justify-center text-brand-700 hover:bg-brand-50 hover:border-brand-200 transition">
+                        <i class="fa-brands fa-facebook-f text-lg"></i>
+                    </a>
                 </div>
             </div>
         </div>
     </footer>
 
+    <script src="js/courses.js"></script>
     <script>
-        const courses = [
-            {
-                tag: 'প্রোগ্রামিং',
-                title: 'পাইথন + ICT',
-                desc: 'পাইথন দিয়ে প্রোগ্রামিংয়ের ভিত্তি গড়ে তোলো। ICT সিলেবাসের সমস্যা সমাধান, অ্যালগরিদম, ডেটা হ্যান্ডলিং এবং হাতে-কলমে কোডিং — সব কিছু শূন্য থেকে শুরু। ক্লাস ৯–১০-এর জন্য উপযুক্ত।',
-                rating: '৪.৯',
-                lessons: '৩২টি পাঠ',
-                time: '১৪ ঘণ্টা ৩০ মি.',
-                img: 'https://images.unsplash.com/photo-1526379095098-d400fd0bf935?q=80&w=600&auto=format&fit=crop'
-            },
-            {
-                tag: 'প্রোগ্রামিং',
-                title: 'সি + ICT',
-                desc: 'সি প্রোগ্রামিং ভাষা ও ICT পাঠ্যক্রম একসাথে শেখো। লজিক বিল্ডিং, ডেটা স্ট্রাকচার, মেমরি ধারণা এবং দক্ষ, গঠনমূলক কোড লেখা — বোর্ড পরীক্ষার জন্য সম্পূর্ণ প্রস্তুতি।',
-                rating: '৪.৮',
-                lessons: '৩৬টি পাঠ',
-                time: '১৬ ঘণ্টা',
-                img: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=600&auto=format&fit=crop'
-            },
-            {
-                tag: 'প্রতিযোগিতা',
-                title: 'NHSPC প্রস্তুতি',
-                desc: 'জাতীয় হাই স্কুল প্রোগ্রামিং প্রতিযোগিতার জন্য সম্পূর্ণ প্রস্তুতি। প্রতিযোগিতামূলক সমস্যা সমাধান, অ্যালগরিদম, টাইমড মক কনটেস্ট — দক্ষতা ক্রমাগত বাড়াও।',
-                rating: '৫.০',
-                lessons: '২৮টি পাঠ',
-                time: '১২ ঘণ্টা ৪৫ মি.',
-                img: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=600&auto=format&fit=crop'
-            },
-        ];
-
-        const star = '<svg class="w-4 h-4 text-brand-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.9 6.2 6.6.6-5 4.4 1.5 6.6L12 17l-6 3.4 1.5-6.6-5-4.4 6.6-.6z"/></svg>';
-        const bookIcon = '<svg class="w-4 h-4 text-brand-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5a2 2 0 012-2h6v16H6a2 2 0 00-2 2V5zM20 5a2 2 0 00-2-2h-6v16h6a2 2 0 012 2V5z"/></svg>';
-        const clockIcon = '<svg class="w-4 h-4 text-brand-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>';
-
-        document.getElementById('course-grid').innerHTML = courses.map(c => `
-            <article class="rounded-2xl border border-gray-100 shadow-sm overflow-hidden bg-white hover:shadow-lg hover:-translate-y-1 transition-all duration-200">
-                <div class="relative h-44">
-                    <img src="${c.img}" alt="${c.title}" class="w-full h-full object-cover" />
-                    <span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-white/90 text-brand-800 text-xs font-semibold">#${c.tag}</span>
-                </div>
-                <div class="p-6">
-                    <h3 class="font-bold text-xl text-gray-900">${c.title}</h3>
-                    <p class="text-gray-500 text-sm mt-3 leading-relaxed">${c.desc}</p>
-                    <div class="flex flex-wrap items-center gap-4 mt-5 text-sm text-gray-600">
-                        <span class="flex items-center gap-1">${star}${c.rating}</span>
-                        <span class="flex items-center gap-1">${bookIcon}${c.lessons}</span>
-                        <span class="flex items-center gap-1">${clockIcon}${c.time}</span>
-                    </div>
-                    <button class="btn-gradient mt-5 w-full py-3.5 rounded-full text-white text-[15px]">কোর্সে ভর্তি হও</button>
-                </div>
-            </article>
-        `).join('');
-
-        const testimonials = [
-            { name: 'আনিসা রহমান', role: 'ক্লাস ১০, ঢাকা', text: 'ICT বইয়ের সাথে মিল রেখে পাঠ সাজানো — এটা আমার সবচেয়ে পছন্দ। পাইথন এখন আর ভয় লাগে না!' },
-            { name: 'রাকিবুল হাসান', role: 'ক্লাস ৯, রাজশাহী', text: 'বাংলায় বোঝানো হওয়ায় সহজে বুঝতে পারি। মেন্টররা দ্রুত উত্তর দেন। NHSPC-র জন্য অনেক উপকারী।' },
-            { name: 'ফাতিমা আক্তার', role: 'ক্লাস ১২, চট্টগ্রাম', text: 'সি প্রোগ্রামিং কোর্সে পয়েন্টার আর অ্যারে ভালোভাবে কভার করা হয়েছে। বোর্ড practical-এ ভালো ফল হয়েছে।' },
-            { name: 'সাদমান ইসলাম', role: 'ক্লাস ১১, সিলেট', text: 'ছোট ছোট প্রজেক্ট করে শেখানো হয় — শুধু তত্ত্ব নয়। কোডিং অনুশীলন অনেক বেড়েছে।' },
-            { name: 'নাদিয়া সুলতানা', role: 'ক্লাস ১০, বরিশাল', text: 'NHSPC মক কনটেস্টগুলো আসল প্রতিযোগিতার মতো। সময় ব্যবস্থাপনা শিখেছি।' },
-            { name: 'তানভীর আহমেদ', role: 'ক্লাস ৯, কুমিল্লা', text: 'বিনামূল্যে কোর্স দিয়ে শুরু করেছিলাম। এখন প্রো প্ল্যান নিয়েছি — দারুণ লাগছে!' },
-        ];
-
-        const quoteIcon = '<svg class="w-8 h-8 text-brand-600/30" viewBox="0 0 24 24" fill="currentColor"><path d="M7 7h4v6c0 2.2-1.8 4-4 4v-2c1.1 0 2-.9 2-2H7V7zm8 0h4v6c0 2.2-1.8 4-4 4v-2c1.1 0 2-.9 2-2h-2V7z"/></svg>';
-        const stars = '<svg class="w-4 h-4 text-accent" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.2 6.6.6-5 4.4 1.5 6.6L12 17l-6 3.4 1.5-6.6-5-4.4 6.6-.6z"/></svg>';
-
-        document.getElementById('testimonial-grid').innerHTML = testimonials.map(t => `
-            <div class="rounded-2xl border border-gray-100 shadow-sm bg-white p-6 hover:shadow-md transition">
-                <div class="flex items-start justify-between">
-                    <div class="flex items-center gap-3">
-                        <div class="w-11 h-11 rounded-full bg-brand-100 flex items-center justify-center text-brand-700 font-bold text-lg">${t.name.charAt(0)}</div>
-                        <div>
-                            <p class="font-bold text-gray-900">${t.name}</p>
-                            <p class="text-xs text-gray-400">${t.role}</p>
-                        </div>
-                    </div>
-                    ${quoteIcon}
-                </div>
-                <div class="flex gap-0.5 mt-4">${stars.repeat(5)}</div>
-                <p class="text-gray-600 text-sm mt-4 leading-relaxed">"${t.text}"</p>
-            </div>
-        `).join('');
+        renderCourseCards('course-grid');
 
         const faqs = [
-            { q: 'ব্যাবেজ একাডেমি কি সত্যিই বিনামূল্যে?', a: 'হ্যাঁ! স্টার্টার প্ল্যান সম্পূর্ণ বিনামূল্যে। ৫টি কোর্সে অ্যাক্সেস পাবে, কোনো ক্রেডিট কার্ড লাগবে না।', open: true },
+            { q: 'ব্যাবেজ একাডেমি কি নতুন?', a: 'হ্যাঁ, আমরা একটি নতুন স্টার্টআপ। হাই স্কুল শিক্ষার্থীদের জন্য বাংলায় প্রোগ্রামিং শেখানোর প্ল্যাটফর্ম তৈরি করছি — তোমরা প্রথম শিক্ষার্থীদের একজন হতে পারো।', open: true },
             { q: 'ICT সিলেবাসের সাথে মিল আছে?', a: 'হ্যাঁ। আমাদের সব কোর্স NCTB ICT বইয়ের অধ্যায় অনুযায়ী সাজানো। বোর্ড theory ও practical — দুটোই কভার করা হয়।' },
             { q: 'প্রোগ্রামিংয়ে একদম নতুন — শুরু করতে পারব?', a: 'অবশ্যই! প্রতিটি কোর্স শূন্য থেকে শুরু হয়। ধাপে ধাপে বাংলায় বোঝানো হয়, কোনো আগে থেকে অভিজ্ঞতা লাগে না।' },
             { q: 'NHSPC-র জন্য কোন কোর্স নেব?', a: 'NHSPC প্রস্তুতি কোর্সটি বিশেষভাবে প্রতিযোগিতার জন্য তৈরি। পাইথন বা সি — যেটা তোমার স্কুলে শেখানো হয়, সেটার সাথে নাও।' },
@@ -781,13 +530,15 @@
             { q: 'মেন্টর সাপোর্ট কীভাবে কাজ করে?', a: 'সাপ্তাহিক Q&A সেশনে প্রশ্ন করতে পারবে। মাস্টারি প্ল্যানে মাসে ২ বার ১-অন-১ সেশন পাবে।' },
         ];
 
-        document.getElementById('faq-list').innerHTML = faqs.map(f => `
-            <div class="faq-item py-5">
-                <button class="faq-btn w-full flex items-center justify-between text-left gap-4">
+        const faqChevron = '<svg class="faq-icon w-5 h-5 text-brand-700 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>';
+
+        document.getElementById('faq-list').innerHTML = faqs.map((f, i) => `
+            <div class="faq-item py-5${f.open ? ' open' : ''}">
+                <button class="faq-btn w-full flex items-center justify-between text-left gap-4" aria-expanded="${f.open}">
                     <span class="font-semibold text-gray-900">${f.q}</span>
-                    <span class="faq-icon text-2xl text-brand-700 leading-none flex-shrink-0">${f.open ? '−' : '+'}</span>
+                    ${faqChevron}
                 </button>
-                <div class="faq-answer ${f.open ? '' : 'hidden'} text-sm text-gray-500 leading-relaxed mt-3 pr-8">${f.a}</div>
+                <div class="faq-answer${f.open ? ' open' : ''} text-sm text-gray-500 leading-relaxed pr-8">${f.a}</div>
             </div>
         `).join('');
 
@@ -795,18 +546,117 @@
             btn.addEventListener('click', () => {
                 const item = btn.closest('.faq-item');
                 const answer = item.querySelector('.faq-answer');
-                const icon = item.querySelector('.faq-icon');
-                const isOpen = !answer.classList.contains('hidden');
+                const isOpen = item.classList.contains('open');
                 document.querySelectorAll('.faq-item').forEach(it => {
-                    it.querySelector('.faq-answer').classList.add('hidden');
-                    it.querySelector('.faq-icon').textContent = '+';
+                    it.classList.remove('open');
+                    it.querySelector('.faq-answer').classList.remove('open');
+                    it.querySelector('.faq-btn').setAttribute('aria-expanded', 'false');
                 });
                 if (!isOpen) {
-                    answer.classList.remove('hidden');
-                    icon.textContent = '−';
+                    item.classList.add('open');
+                    answer.classList.add('open');
+                    btn.setAttribute('aria-expanded', 'true');
                 }
             });
         });
+
+        // ── Interactions: scroll progress, reveal, counters, parallax, typing ──
+        (function initInteractions() {
+            const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            const bnDigits = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
+            const toBn = (n) => String(n).split('').map(d => bnDigits[+d] ?? d).join('');
+
+            // Scroll progress
+            const progress = document.getElementById('scroll-progress');
+            const header = document.querySelector('.site-header');
+            window.addEventListener('scroll', () => {
+                const scrollTop = window.scrollY;
+                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                progress.style.transform = `scaleX(${docHeight > 0 ? scrollTop / docHeight : 0})`;
+                header.classList.toggle('scrolled', scrollTop > 24);
+            }, { passive: true });
+
+            // Active nav link
+            const sections = ['home', 'courses', 'features', 'faq', 'contact'];
+            const navLinks = document.querySelectorAll('.nav-link[data-section]');
+            const observerNav = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        navLinks.forEach(l => l.classList.remove('active'));
+                        const link = document.querySelector(`.nav-link[data-section="${entry.target.id}"]`);
+                        if (link) link.classList.add('active');
+                    }
+                });
+            }, { rootMargin: '-40% 0px -55% 0px' });
+            sections.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) observerNav.observe(el);
+            });
+
+            // Scroll reveal
+            const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-scale');
+            if (!reducedMotion) {
+                const revealObs = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('revealed');
+                            revealObs.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+                revealEls.forEach(el => revealObs.observe(el));
+            } else {
+                revealEls.forEach(el => el.classList.add('revealed'));
+            }
+
+            // Hero parallax
+            if (!reducedMotion) {
+                const heroVisual = document.getElementById('hero-visual');
+                const heroPc = document.getElementById('hero-pc');
+                heroVisual?.addEventListener('mousemove', (e) => {
+                    const rect = heroVisual.getBoundingClientRect();
+                    const x = (e.clientX - rect.left) / rect.width - 0.5;
+                    const y = (e.clientY - rect.top) / rect.height - 0.5;
+                    heroPc.style.transform = `translate(calc(-50% + ${x * 18}px), calc(-50% + ${y * 12}px))`;
+                });
+                heroVisual?.addEventListener('mouseleave', () => {
+                    heroPc.style.transform = 'translate(-50%, -50%)';
+                });
+            }
+
+            // Typing effect in CTA
+            const typingEl = document.getElementById('typing-line');
+            const outputEl = document.getElementById('typing-output');
+            const phrase = 'হ্যালো, বিশ্ব!';
+            if (typingEl && outputEl && !reducedMotion) {
+                let charIdx = 0;
+                let deleting = false;
+                function typeLoop() {
+                    if (!deleting) {
+                        typingEl.textContent = '"' + phrase.slice(0, charIdx) + '"';
+                        charIdx++;
+                        if (charIdx > phrase.length) {
+                            outputEl.textContent = phrase;
+                            setTimeout(() => { deleting = true; typeLoop(); }, 2000);
+                            return;
+                        }
+                    } else {
+                        charIdx--;
+                        typingEl.textContent = charIdx > 0 ? '"' + phrase.slice(0, charIdx) + '"' : '""';
+                        outputEl.textContent = charIdx > 0 ? phrase.slice(0, charIdx) : '';
+                        if (charIdx <= 0) { deleting = false; setTimeout(typeLoop, 600); return; }
+                    }
+                    setTimeout(typeLoop, deleting ? 60 : 120);
+                }
+                const typingObs = new IntersectionObserver((entries) => {
+                    if (entries[0].isIntersecting) { typeLoop(); typingObs.disconnect(); }
+                }, { threshold: 0.4 });
+                typingObs.observe(typingEl.closest('.code-terminal') || typingEl);
+            } else if (typingEl && outputEl) {
+                typingEl.textContent = '"হ্যালো, বিশ্ব!"';
+                outputEl.textContent = phrase;
+            }
+        })();
     </script>
 </body>
 

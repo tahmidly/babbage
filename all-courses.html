@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="bn">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>সব কোর্স — ব্যাবেজ একাডেমি</title>
+    <link rel="icon" href="assets/images/logo.png" type="image/png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Li Ador Noirrit', 'sans-serif'] },
+                    colors: {
+                        brand: { 50: '#f0fdf4', 100: '#dcfce7', 500: '#22c55e', 600: '#16a34a', 700: '#15803d', 800: '#166534', 900: '#14532d' },
+                        accent: '#f59e0b',
+                    },
+                },
+            },
+        };
+    </script>
+    <link rel="stylesheet" href="css/site.css" />
+</head>
+
+<body class="text-gray-800 antialiased overflow-x-hidden site-ready">
+
+    <div id="scroll-progress" aria-hidden="true"></div>
+
+    <header class="site-header sticky top-0 z-30 bg-white/90 backdrop-blur-md shadow-sm">
+        <nav class="max-w-7xl mx-auto px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-2.5 group">
+                <img src="assets/images/logo.png" alt="ব্যাবেজ একাডেমি লোগো"
+                    class="w-11 h-11 object-contain transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3" />
+                <span class="font-bold text-xl md:text-2xl text-gray-900">ব্যাবেজ একাডেমি</span>
+            </a>
+            <ul class="hidden md:flex items-center gap-8 text-[15px] font-medium text-gray-600">
+                <li><a href="index.html" class="nav-link hover:text-brand-700 transition">হোম</a></li>
+                <li><a href="all-courses.html" class="nav-link active hover:text-brand-700 transition">সব কোর্স</a></li>
+                <li><a href="index.html#features" class="nav-link hover:text-brand-700 transition">বৈশিষ্ট্য</a></li>
+                <li><a href="index.html#faq" class="nav-link hover:text-brand-700 transition">প্রশ্নোত্তর</a></li>
+                <li><a href="index.html#contact" class="nav-link hover:text-brand-700 transition">যোগাযোগ</a></li>
+            </ul>
+            <div class="flex items-center gap-4">
+                <a href="#" class="hidden sm:inline text-[15px] font-medium text-gray-700 hover:text-brand-700 transition">নিবন্ধন</a>
+                <a href="#" class="btn-gradient btn-shine px-6 py-2.5 rounded-full text-white text-[14px]">লগ ইন</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="course-hero-light relative overflow-hidden">
+            <div class="course-soft-grid absolute inset-0"></div>
+            <div class="course-soft-block w-28 h-28 top-12 right-[10%] opacity-70 hidden md:block"></div>
+            <div class="course-soft-block w-20 h-20 top-28 right-[24%] opacity-50 hidden lg:block"></div>
+            <div class="course-soft-block w-32 h-32 bottom-6 left-[8%] opacity-55 hidden md:block"></div>
+
+            <div class="relative max-w-7xl mx-auto px-6 lg:px-8 py-10 md:py-14">
+                <nav class="text-sm text-gray-500 flex flex-wrap items-center gap-2" aria-label="Breadcrumb">
+                    <a href="index.html" class="hover:text-brand-700 transition">হোম</a>
+                    <span class="text-gray-300">/</span>
+                    <span class="text-brand-800 font-medium">সব কোর্স</span>
+                </nav>
+
+                <div class="mt-8 md:mt-10 max-w-3xl">
+                    <p class="text-accent font-bold tracking-wider text-sm uppercase">কোর্সসমূহ</p>
+                    <h1 class="font-bold text-gray-900 text-3xl md:text-[2.75rem] lg:text-5xl mt-3 leading-tight">
+                        তোমার পছন্দের কোর্স বেছে নাও
+                    </h1>
+                    <p class="mt-5 text-gray-600 text-base md:text-lg leading-relaxed">
+                        ICT সিলেবাস, প্রোগ্রামিং ও NHSPC প্রস্তুতি — সব কোর্স বাংলায়, হাই স্কুল শিক্ষার্থীদের জন্য তৈরি।
+                    </p>
+                    <div class="flex flex-wrap gap-3 mt-8">
+                        <span class="glass-pill px-4 py-2.5 rounded-2xl text-sm text-gray-700">
+                            <i class="fa-solid fa-book-open text-brand-600 mr-2"></i><span id="course-count">৩</span>টি কোর্স
+                        </span>
+                        <span class="glass-pill px-4 py-2.5 rounded-2xl text-sm text-gray-700">
+                            <i class="fa-solid fa-gift text-brand-600 mr-2"></i>বিনামূল্যে শুরু
+                        </span>
+                        <span class="glass-pill px-4 py-2.5 rounded-2xl text-sm text-gray-700">
+                            <i class="fa-solid fa-language text-brand-600 mr-2"></i>সম্পূর্ণ বাংলা
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="max-w-7xl mx-auto px-6 lg:px-8 py-14 md:py-16 pb-16">
+            <div id="all-course-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-7"></div>
+        </section>
+    </main>
+
+    <footer id="contact" class="bg-gradient-to-b from-white to-brand-50 border-t border-gray-100">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 py-16">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-10">
+                <div>
+                    <h4 class="font-bold text-gray-900 mb-4">কোর্স</h4>
+                    <ul class="space-y-3 text-sm text-gray-500">
+                        <li><a href="course-details.html?id=python-ict" class="hover:text-brand-700">পাইথন + ICT</a></li>
+                        <li><a href="course-details.html?id=c-ict" class="hover:text-brand-700">সি + ICT</a></li>
+                        <li><a href="course-details.html?id=nhspc-prep" class="hover:text-brand-700">NHSPC প্রস্তুতি</a></li>
+                        <li><a href="all-courses.html" class="hover:text-brand-700">সব কোর্স</a></li>
+                        <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSeKd2ZqZRwi-WOPNQOxXFGsEwLyyeMNWOWyHkMAeAYsNt3kcQ/viewform?usp=send_form" target="_blank" rel="noopener" class="hover:text-brand-700">কোর্সে ভর্তি ফর্ম</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-gray-900 mb-4">রিসোর্স</h4>
+                    <ul class="space-y-3 text-sm text-gray-500">
+                        <li><a href="#" class="hover:text-brand-700">ব্লগ</a></li>
+                        <li><a href="#" class="hover:text-brand-700">ICT নোট</a></li>
+                        <li><a href="#" class="hover:text-brand-700">কোড উদাহরণ</a></li>
+                        <li><a href="#" class="hover:text-brand-700">সাহায্য কেন্দ্র</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-gray-900 mb-4">আমাদের সম্পর্কে</h4>
+                    <ul class="space-y-3 text-sm text-gray-500">
+                        <li><a href="#" class="hover:text-brand-700">পরিচিতি</a></li>
+                        <li><a href="#" class="hover:text-brand-700">যোগাযোগ</a></li>
+                        <li><a href="#" class="hover:text-brand-700">শর্তাবলী</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-gray-900 mb-4">যোগাযোগ</h4>
+                    <ul class="space-y-4 text-sm">
+                        <li>
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeKd2ZqZRwi-WOPNQOxXFGsEwLyyeMNWOWyHkMAeAYsNt3kcQ/viewform?usp=send_form" target="_blank" rel="noopener"
+                                class="group flex items-start gap-3 text-gray-500 hover:text-brand-700 transition">
+                                <span class="w-9 h-9 shrink-0 rounded-xl bg-brand-50 flex items-center justify-center text-brand-700 group-hover:bg-brand-100 transition">
+                                    <i class="fa-solid fa-file-pen text-lg"></i>
+                                </span>
+                                <span>
+                                    <span class="block font-semibold text-gray-900 group-hover:text-brand-700">কোর্সে ভর্তি ফর্ম</span>
+                                    <span class="block mt-0.5">অনলাইন আবেদন করুন</span>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-10 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-gray-400 border-t border-gray-100 pt-10">
+                <p>© ২০২৫ ব্যাবেজ একাডেমি। সর্বস্বত্ব সংরক্ষিত।</p>
+                <div class="flex gap-3">
+                    <a href="https://wa.me/8801712383115" target="_blank" rel="noopener" aria-label="WhatsApp"
+                        class="w-10 h-10 rounded-full bg-white border border-gray-200 flex items-center justify-center text-brand-700 hover:bg-brand-50 transition">
+                        <i class="fa-brands fa-whatsapp text-lg"></i>
+                    </a>
+                    <a href="https://www.youtube.com/@babbage.academy" target="_blank" rel="noopener" aria-label="YouTube"
+                        class="w-10 h-10 rounded-full bg-white border border-gray-200 flex items-center justify-center text-brand-700 hover:bg-brand-50 transition">
+                        <i class="fa-brands fa-youtube text-lg"></i>
+                    </a>
+                    <a href="https://www.facebook.com/cbabbage.academy" target="_blank" rel="noopener" aria-label="Facebook"
+                        class="w-10 h-10 rounded-full bg-white border border-gray-200 flex items-center justify-center text-brand-700 hover:bg-brand-50 transition">
+                        <i class="fa-brands fa-facebook-f text-lg"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/courses.js"></script>
+    <script>
+        document.getElementById('course-count').textContent = String(COURSES.length);
+        renderCourseCards('all-course-grid');
+
+        (function initPage() {
+            const progress = document.getElementById('scroll-progress');
+            const header = document.querySelector('.site-header');
+            window.addEventListener('scroll', () => {
+                const scrollTop = window.scrollY;
+                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                progress.style.transform = `scaleX(${docHeight > 0 ? scrollTop / docHeight : 0})`;
+                header.classList.toggle('scrolled', scrollTop > 24);
+            }, { passive: true });
+
+            const revealEls = document.querySelectorAll('.reveal, .reveal-scale');
+            const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            if (!reducedMotion) {
+                const obs = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('revealed');
+                            obs.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+                revealEls.forEach((el) => obs.observe(el));
+            } else {
+                revealEls.forEach((el) => el.classList.add('revealed'));
+            }
+        })();
+    </script>
+</body>
+
+</html>
