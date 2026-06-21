@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="bn">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ব্যাবেজ একাডেমি — হাই স্কুল শিক্ষার্থীদের জন্য প্রোগ্রামিং শেখা</title>
+    <link rel="icon" href="logo.png" type="image/png" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Li Ador Noirrit', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            800: '#166534',
+                            900: '#14532d',
+                        },
+                        accent: '#f59e0b',
+                    },
+                },
+            },
+        };
+    </script>
+    <style>
+        @font-face {
+            font-family: 'Li Ador Noirrit';
+            src: url('LiAdorNoirritMultiweight/Unicode/Li Ador Noirrit ExtraLight.ttf') format('truetype');
+            font-weight: 200;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Li Ador Noirrit';
+            src: url('LiAdorNoirritMultiweight/Unicode/Li Ador Noirrit Light.ttf') format('truetype');
+            font-weight: 300;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Li Ador Noirrit';
+            src: url('LiAdorNoirritMultiweight/Unicode/Li Ador Noirrit Regular.ttf') format('truetype');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Li Ador Noirrit';
+            src: url('LiAdorNoirritMultiweight/Unicode/Li Ador Noirrit SemiBold.ttf') format('truetype');
+            font-weight: 600;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Li Ador Noirrit';
+            src: url('LiAdorNoirritMultiweight/Unicode/Li Ador Noirrit Bold.ttf') format('truetype');
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Li Ador Noirrit', sans-serif;
+        }
+
+        .square-grid {
+            background-image:
+                linear-gradient(to right, rgba(255, 255, 255, 0.18) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.18) 1px, transparent 1px);
+            background-size: 64px 64px;
+        }
+
+        .hero-grid {
+            background-image:
+                linear-gradient(to right, rgba(255, 255, 255, 0.35) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.35) 1px, transparent 1px);
+            background-size: 70px 70px;
+        }
+
+        .card-leaf-bg {
+            background-image: radial-gradient(rgba(22, 163, 74, 0.05) 1px, transparent 1px);
+            background-size: 14px 14px;
+        }
+
+        .btn-gradient {
+            background: linear-gradient(to bottom, #34c759 0%, #28a745 22%, #1e8f3a 55%, #146b2e 82%, #0f5524 100%);
+            color: #fff;
+            border: none;
+            font-weight: 600;
+            transition: filter 0.2s ease, transform 0.2s ease;
+        }
+
+        .btn-gradient:hover {
+            filter: brightness(1.06);
+            transform: translateY(-1px);
+        }
+
+        .btn-gradient:active {
+            filter: brightness(0.96);
+            transform: translateY(0);
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes spin-rev {
+            to {
+                transform: rotate(-360deg);
+            }
+        }
+
+        .gear-slow {
+            animation: spin 18s linear infinite;
+            transform-origin: 50% 50%;
+        }
+
+        .gear-rev {
+            animation: spin-rev 14s linear infinite;
+            transform-origin: 50% 50%;
+        }
+
+        .gear-fast {
+            animation: spin 9s linear infinite;
+            transform-origin: 50% 50%;
+        }
+
+        .dial-window {
+            background: linear-gradient(145deg, #f6d68a, #d99a2b 55%, #a96c12);
+            box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.5), inset 0 -3px 6px rgba(120, 70, 0, 0.45);
+        }
+
+        .dial-strip {
+            animation: dialTick 6s steps(10) infinite;
+        }
+
+        .dial-strip span {
+            height: 3.5rem;
+            line-height: 3.5rem;
+        }
+
+        @keyframes dialTick {
+            to {
+                transform: translateY(-35rem);
+            }
+        }
+
+        #loader {
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1.75rem;
+            background: #f0fdf4;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        #loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader-text {
+            font-family: 'Li Ador Noirrit', sans-serif;
+            color: #15803d;
+            font-size: clamp(1.25rem, 4vw, 2rem);
+            font-weight: 700;
+        }
+
+        .loader-dots::after {
+            content: '';
+            animation: loaderDots 1.4s steps(4) infinite;
+        }
+
+        @keyframes loaderDots {
+            0% {
+                content: '';
+            }
+
+            25% {
+                content: '.';
+            }
+
+            50% {
+                content: '..';
+            }
+
+            75% {
+                content: '...';
+            }
+        }
+
+        .loader-bar {
+            width: min(60vw, 460px);
+            height: 14px;
+            border-radius: 999px;
+            background: #dcfce7;
+            overflow: hidden;
+        }
+
+        .loader-fill {
+            height: 100%;
+            width: 0;
+            border-radius: 999px;
+            background: linear-gradient(to right, #16a34a, #22c55e);
+            animation: loaderFill 2.4s ease-out forwards;
+        }
+
+        @keyframes loaderFill {
+            to {
+                width: 100%;
+            }
+        }
+
+        .loader-pct {
+            font-family: 'Li Ador Noirrit', sans-serif;
+            color: #16a34a;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+
+        .code-snippet {
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 0.75rem;
+            direction: ltr;
+            text-align: left;
+        }
+    </style>
+</head>
+
+<body class="text-gray-800 antialiased overflow-x-hidden">
+
+    <!-- লোডিং স্ক্রিন -->
+    <div id="loader">
+        <p class="loader-text">লোড হচ্ছে<span class="loader-dots"></span></p>
+        <div class="loader-bar">
+            <div class="loader-fill"></div>
+        </div>
+        <p class="loader-pct" id="loader-pct">০%</p>
+    </div>
+    <script>
+        (function () {
+            const loader = document.getElementById('loader');
+            const pct = document.getElementById('loader-pct');
+            const bnDigits = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
+            const toBn = n => String(n).split('').map(d => bnDigits[+d] ?? d).join('');
+            const DURATION = 2400;
+            const start = performance.now();
+            function tick(now) {
+                const p = Math.min(100, Math.round(((now - start) / DURATION) * 100));
+                pct.textContent = toBn(p) + '%';
+                if (p < 100) {
+                    requestAnimationFrame(tick);
+                } else {
+                    loader.classList.add('hidden');
+                    setTimeout(() => loader.remove(), 600);
+                }
+            }
+            requestAnimationFrame(tick);
+        })();
+    </script>
+
+    <!-- হেডার + হিরো -->
+    <div class="relative bg-gradient-to-b from-brand-100 via-brand-50 to-white overflow-hidden">
+        <div
+            class="hero-grid absolute top-0 right-0 w-1/2 h-full opacity-60 [mask-image:linear-gradient(to_left,black,transparent)]">
+        </div>
+
+        <header class="relative z-20">
+            <nav class="max-w-7xl mx-auto px-6 lg:px-8 h-20 flex items-center justify-between">
+                <a href="#" class="flex items-center gap-2.5">
+                    <img src="logo.png" alt="ব্যাবেজ একাডেমি লোগো" class="w-11 h-11 object-contain" />
+                    <span class="font-bold text-xl md:text-2xl text-gray-900">ব্যাবেজ একাডেমি</span>
+                </a>
+                <ul class="hidden md:flex items-center gap-8 text-[15px] font-medium text-gray-600">
+                    <li><a href="#" class="hover:text-brand-700 transition">হোম</a></li>
+                    <li><a href="#courses" class="hover:text-brand-700 transition">কোর্স</a></li>
+                    <li><a href="#features" class="hover:text-brand-700 transition">বৈশিষ্ট্য</a></li>
+                    <li><a href="#faq" class="hover:text-brand-700 transition">প্রশ্নোত্তর</a></li>
+                    <li><a href="#contact" class="hover:text-brand-700 transition">যোগাযোগ</a></li>
+                </ul>
+                <div class="flex items-center gap-4">
+                    <a href="#"
+                        class="hidden sm:inline text-[15px] font-medium text-gray-700 hover:text-brand-700 transition">নিবন্ধন</a>
+                    <a href="#" class="btn-gradient px-6 py-2.5 rounded-full text-white text-[14px]">লগ ইন</a>
+                </div>
+            </nav>
+        </header>
+
+        <section class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 pt-10 pb-4 text-center">
+            <span
+                class="inline-block px-4 py-1.5 rounded-full bg-white/80 border border-brand-200 text-brand-800 text-sm font-semibold shadow-sm">
+                🎓 ক্লাস ৯–১২ শিক্ষার্থীদের জন্য
+            </span>
+            <h1
+                class="font-bold text-gray-900 text-4xl md:text-5xl lg:text-[56px] leading-[1.45] md:leading-[1.5] tracking-tight mt-6">
+                প্রোগ্রামিং শেখো সহজে,<br />ICT সিলেবাস মাথায় রেখে
+            </h1>
+            <p class="mt-6 max-w-2xl mx-auto text-lg text-gray-600 leading-relaxed">
+                পাইথন, সি এবং প্রতিযোগিতামূলক প্রোগ্রামিং — সব কিছু বাংলায়, ধাপে ধাপে।
+                হাই স্কুলের ICT বইয়ের সাথে মিল রেখে প্রস্তুত করা কোর্স।
+            </p>
+            <div class="mt-9 flex flex-wrap items-center justify-center gap-4">
+                <a href="#courses" class="btn-gradient px-8 py-3.5 rounded-full text-white text-[15px]">শেখা শুরু
+                    করো</a>
+                <a href="#courses"
+                    class="px-6 py-3 rounded-full bg-white text-gray-800 text-[15px] font-semibold border border-gray-200 hover:border-brand-600 hover:text-brand-700 transition shadow-sm">সব
+                    কোর্স দেখো</a>
+            </div>
+
+            <div class="relative mt-10 max-w-3xl mx-auto h-[420px]">
+                <div class="absolute inset-0 z-0 pointer-events-none">
+                    <svg class="gear-slow absolute top-6 left-10 w-28 h-28 text-amber-500/40" viewBox="0 0 24 24"
+                        fill="currentColor">
+                        <path
+                            d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z" />
+                    </svg>
+                    <svg class="gear-rev absolute top-24 left-28 w-16 h-16 text-amber-600/40" viewBox="0 0 24 24"
+                        fill="currentColor">
+                        <path
+                            d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z" />
+                    </svg>
+                    <svg class="gear-fast absolute bottom-10 right-12 w-24 h-24 text-amber-500/40" viewBox="0 0 24 24"
+                        fill="currentColor">
+                        <path
+                            d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z" />
+                    </svg>
+                </div>
+
+                <img src="pc.gif" alt="রেট্রো কম্পিউটার"
+                    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[380px] w-auto object-contain mix-blend-multiply" />
+
+                <div
+                    class="absolute top-20 left-2 md:left-6 bg-white rounded-2xl shadow-lg px-4 py-3 flex items-center gap-3 animate-[float_4s_ease-in-out_infinite]">
+                    <span class="w-10 h-10 rounded-xl bg-accent flex items-center justify-center text-white">
+                        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2l2.9 6.2 6.6.6-5 4.4 1.5 6.6L12 17l-6 3.4 1.5-6.6-5-4.4 6.6-.6z" />
+                        </svg>
+                    </span>
+                    <div class="text-left leading-tight">
+                        <p class="font-bold text-gray-900">৪.৯/৫</p>
+                        <p class="text-xs text-gray-500">গড় রেটিং</p>
+                    </div>
+                </div>
+
+                <div
+                    class="absolute top-16 right-2 md:right-6 bg-white rounded-2xl shadow-lg px-4 py-3 flex items-center gap-3 animate-[float_5s_ease-in-out_infinite]">
+                    <span class="w-10 h-10 rounded-xl bg-sky-400 flex items-center justify-center text-white">
+                        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 12a5 5 0 100-10 5 5 0 000 10zm0 2c-5 0-9 2.5-9 6v2h18v-2c0-3.5-4-6-9-6z" />
+                        </svg>
+                    </span>
+                    <div class="text-left leading-tight">
+                        <p class="font-bold text-gray-900">৫,০০০+</p>
+                        <p class="text-xs text-gray-500">শিক্ষার্থী</p>
+                    </div>
+                </div>
+
+                <div
+                    class="absolute bottom-16 right-0 md:right-4 bg-white rounded-2xl shadow-lg px-4 py-3 flex items-center gap-3 animate-[float_4.5s_ease-in-out_infinite]">
+                    <span class="w-10 h-10 rounded-xl bg-indigo-400 flex items-center justify-center text-white">
+                        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M19 4h-1V2h-2v2H8V2H6v2H5a2 2 0 00-2 2v13a2 2 0 002 2h14a2 2 0 002-2V6a2 2 0 00-2-2zm0 15H5V9h14v10z" />
+                        </svg>
+                    </span>
+                    <div class="text-left leading-tight">
+                        <p class="font-bold text-gray-900">৫০+</p>
+                        <p class="text-xs text-gray-500">সাপ্তাহিক পাঠ</p>
+                    </div>
+                </div>
+
+                <div
+                    class="absolute bottom-24 left-10 md:left-20 z-10 dial-window w-14 h-14 rounded-full overflow-hidden shadow-lg ring-4 ring-amber-700/30 animate-[float_3.5s_ease-in-out_infinite]">
+                    <div class="dial-strip font-bold text-2xl text-amber-950 text-center w-full">
+                        <span class="block">০</span><span class="block">১</span><span class="block">২</span><span
+                            class="block">৩</span><span class="block">৪</span>
+                        <span class="block">৫</span><span class="block">৬</span><span class="block">৭</span><span
+                            class="block">৮</span><span class="block">৯</span><span class="block">০</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- বিশ্বাস -->
+    <section class="border-b border-gray-100">
+        <div class="max-w-6xl mx-auto px-6 lg:px-8 py-10">
+            <p class="text-center text-sm text-gray-400">বাংলাদেশের শিক্ষার্থী ও শিক্ষকরা আমাদের উপর বিশ্বাস রাখেন</p>
+            <div
+                class="mt-7 flex flex-wrap items-center justify-center gap-x-8 gap-y-4 text-gray-500 font-semibold text-base md:text-lg">
+                <span>ঢাকা বোর্ড</span>
+                <span class="hidden md:inline text-gray-200">|</span>
+                <span>রাজশাহী বোর্ড</span>
+                <span class="hidden md:inline text-gray-200">|</span>
+                <span>চট্টগ্রাম বোর্ড</span>
+                <span class="hidden md:inline text-gray-200">|</span>
+                <span>NHSPC</span>
+                <span class="hidden md:inline text-gray-200">|</span>
+                <span>ICT ক্লাব</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- শেখার সুবিধা -->
+    <section id="features" class="max-w-7xl mx-auto px-6 lg:px-8 py-20">
+        <p class="text-accent font-bold tracking-wider text-sm uppercase">আমাদের শেখার পদ্ধতি</p>
+        <h2 class="font-bold text-gray-900 text-3xl md:text-[42px] leading-tight mt-3">
+            হাই স্কুল শিক্ষার্থীদের জন্য<br class="hidden md:block" /> যা যা দরকার — সব এক জায়গায়
+        </h2>
+
+        <div class="grid md:grid-cols-3 gap-6 mt-12">
+            <div
+                class="relative card-leaf-bg rounded-2xl border border-gray-100 shadow-sm p-8 text-center overflow-hidden hover:shadow-md transition">
+                <div class="w-14 h-14 mx-auto flex items-center justify-center rounded-2xl bg-brand-100 text-brand-700">
+                    <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                        <path
+                            d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                    </svg>
+                </div>
+                <h3 class="font-bold text-xl text-gray-900 mt-5">ICT সিলেবাস অনুযায়ী</h3>
+                <p class="text-gray-500 text-sm mt-3 leading-relaxed">NCTB বইয়ের অধ্যায় অনুযায়ী সাজানো পাঠ। বোর্ড
+                    পরীক্ষা ও ICT প্র্যাকটিক্যাল — দুটোই কভার।</p>
+            </div>
+
+            <div
+                class="relative card-leaf-bg rounded-2xl border border-gray-100 shadow-sm p-8 text-center overflow-hidden hover:shadow-md transition">
+                <div class="w-14 h-14 mx-auto flex items-center justify-center rounded-2xl bg-brand-100 text-brand-700">
+                    <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                        <rect x="3" y="4" width="18" height="16" rx="2" />
+                        <path d="M3 9h18M8 4v5" />
+                    </svg>
+                </div>
+                <h3 class="font-bold text-xl text-gray-900 mt-5">হাতে-কলমে প্রজেক্ট</h3>
+                <p class="text-gray-500 text-sm mt-3 leading-relaxed">ক্যালকুলেটর, গেম, ডাটা অ্যানালাইসিস — ছোট ছোট
+                    প্রজেক্ট করে প্রোগ্রামিং শেখো। শুধু তত্ত্ব নয়, কোড লিখে শেখো।</p>
+            </div>
+
+            <div
+                class="relative card-leaf-bg rounded-2xl border border-gray-100 shadow-sm p-8 text-center overflow-hidden hover:shadow-md transition">
+                <div class="w-14 h-14 mx-auto flex items-center justify-center rounded-2xl bg-brand-100 text-brand-700">
+                    <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                        <circle cx="12" cy="8" r="4" />
+                        <path d="M6 20v-1a6 6 0 0112 0v1" />
+                    </svg>
+                </div>
+                <h3 class="font-bold text-xl text-gray-900 mt-5">মেন্টর সহায়তা</h3>
+                <p class="text-gray-500 text-sm mt-3 leading-relaxed">আটকে গেলে সাহায্য পাবে। অভিজ্ঞ শিক্ষক ও সিনিয়র
+                    প্রোগ্রামাররা বাংলায় প্রশ্নের উত্তর দেন।</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- কোর্স -->
+    <section id="courses" class="max-w-7xl mx-auto px-6 lg:px-8 py-10">
+        <div class="flex items-end justify-between flex-wrap gap-4">
+            <div>
+                <p class="text-accent font-bold tracking-wider text-sm uppercase">কোর্সসমূহ</p>
+                <h2 class="font-bold text-gray-900 text-3xl md:text-[42px] mt-3">তোমার পছন্দের কোর্স বেছে নাও</h2>
+            </div>
+            <a href="#" class="text-brand-700 font-semibold hover:underline">সব কোর্স দেখো →</a>
+        </div>
+        <div id="course-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-7 mt-12"></div>
+    </section>
+
+    <!-- মূল্য (সাময়িকভাবে বন্ধ)
+    <section class="max-w-7xl mx-auto px-6 lg:px-8 py-20 text-center">
+        <p class="text-accent font-bold tracking-wider text-sm uppercase">মূল্য তালিকা</p>
+        <h2 class="font-bold text-gray-900 text-3xl md:text-[42px] mt-3">তোমার জন্য উপযুক্ত প্ল্যান বেছে নাও</h2>
+
+        <div class="grid md:grid-cols-3 gap-7 mt-14 max-w-5xl mx-auto text-left">
+            <div class="rounded-2xl border border-gray-200 p-8 bg-white hover:shadow-md transition">
+                <p class="text-gray-900"><span class="font-bold text-lg">স্টার্টার</span> <span class="text-gray-400">(বিনামূল্যে)</span></p>
+                <p class="mt-4 font-bold text-4xl text-gray-900">৳০<span class="text-base font-medium text-gray-400">/মাস</span></p>
+                <p class="mt-4 text-sm text-gray-500">নতুন শিক্ষার্থীদের জন্য — শুরু করতে চমৎকার।</p>
+                <button class="btn-gradient mt-6 w-full py-3.5 rounded-full text-white">বিনামূল্যে শুরু করো</button>
+                <ul class="mt-7 space-y-3 text-sm text-gray-600">
+                    <li class="flex gap-2"><span class="text-brand-600">✓</span> ৫টি বিনামূল্যে কোর্স</li>
+                    <li class="flex gap-2"><span class="text-brand-600">✓</span> সীমিত কুইজ ও অ্যাসাইনমেন্ট</li>
+                    <li class="flex gap-2"><span class="text-brand-600">✓</span> কমিউনিটি আলোচনা</li>
+                    <li class="flex gap-2"><span class="text-brand-600">✓</span> মোবাইলে শেখা</li>
+                    <li class="flex gap-2"><span class="text-brand-600">✓</span> মৌলিক অগ্রগতি ট্র্যাকিং</li>
+                </ul>
+            </div>
+
+            <div class="relative rounded-2xl border-2 border-brand-600 p-8 bg-white shadow-lg">
+                <span class="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-accent text-white text-xs font-semibold">সবচেয়ে জনপ্রিয়</span>
+                <p class="text-gray-900"><span class="font-bold text-lg">প্রো লার্নার</span></p>
+                <p class="mt-4 font-bold text-4xl text-gray-900">৳৫৯৯<span class="text-base font-medium text-gray-400">/মাস</span></p>
+                <p class="mt-4 text-sm text-gray-500">ICT ও প্রোগ্রামিং গুরুত্ব দিয়ে শেখতে চাই — তাদের জন্য।</p>
+                <button class="btn-gradient mt-6 w-full py-3.5 rounded-full text-white">প্রো-তে আপগ্রেড করো</button>
+                <ul class="mt-7 space-y-3 text-sm text-gray-600">
+                    <li class="flex gap-2"><span class="text-brand-600">✓</span> সব কোর্সে সীমাহীন অ্যাক্সেস</li>
+                    <li class="flex gap-2"><span class="text-brand-600">✓</span> প্রতিটি কোর্সে সার্টিফিকেট</li>
+                    <li class="flex gap-2"><span class="text-brand-600">✓</span> ডাউনলোডযোগ্য নোট ও কোড</li>
+                    <li class="flex gap-2"><span class="text-brand-600">✓</span> সাপ্তাহিক মেন্টর Q&amp;A</li>
+                    <li class="flex gap-2"><span class="text-brand-600">✓</span> সব কুইজ ও মক টেস্ট</li>
+                    <li class="flex gap-2"><span class="text-brand-600">✓</span> NHSPC প্র্যাকটিস সেট</li>
+                </ul>
+            </div>
+
+            <div class="rounded-2xl border border-gray-200 p-8 bg-white hover:shadow-md transition">
+                <p class="text-gray-900"><span class="font-bold text-lg">মাস্টারি</span> <span class="text-gray-400">(সেরা মূল্য)</span></p>
+                <p class="mt-4 font-bold text-4xl text-gray-900">৳৯৯৯<span class="text-base font-medium text-gray-400">/মাস</span></p>
+                <p class="mt-4 text-sm text-gray-500">প্রতিযোগিতা ও বোর্ড — দুটোতেই শীর্ষে যেতে চাই।</p>
+                <button class="btn-gradient mt-6 w-full py-3.5 rounded-full text-white">মাস্টারি প্রোগ্রামে যোগ দাও</button>
+                <ul class="mt-7 space-y-3 text-sm text-gray-600">
+                    <li class="flex gap-2"><span class="text-brand-600">✓</span> প্রো-র সব সুবিধা</li>
+                    <li class="flex gap-2"><span class="text-brand-600">✓</span> মাসে ২ বার ১-অন-১ মেন্টর সেশন</li>
+                    <li class="flex gap-2"><span class="text-brand-600">✓</span> ব্যক্তিগত শেখার রোডম্যাপ</li>
+                    <li class="flex gap-2"><span class="text-brand-600">✓</span> NHSPC মক কনটেস্ট</li>
+                    <li class="flex gap-2"><span class="text-brand-600">✓</span> অগ্রাধিকার সাপোর্ট</li>
+                    <li class="flex gap-2"><span class="text-brand-600">✓</span> নতুন কোর্সে আগাম অ্যাক্সেস</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    -->
+
+    <!-- মতামত -->
+    <section class="bg-gradient-to-b from-white via-brand-50 to-white py-20">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 text-center">
+            <p class="text-accent font-bold tracking-wider text-sm uppercase">শিক্ষার্থীদের মতামত</p>
+            <h2 class="font-bold text-gray-900 text-3xl md:text-[42px] mt-3">আমাদের শিক্ষার্থীরা কী বলেন</h2>
+            <div id="testimonial-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-12 text-left"></div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="max-w-7xl mx-auto px-6 lg:px-8 py-10">
+        <div class="relative rounded-3xl overflow-hidden bg-gradient-to-r from-brand-100 to-brand-500">
+            <div class="square-grid absolute inset-0 opacity-70"></div>
+            <div class="relative grid md:grid-cols-2 items-center">
+                <div class="p-10 md:p-14">
+                    <h2 class="font-bold text-gray-900 text-3xl md:text-[40px] leading-tight">প্রোগ্রামিং শেখার জন্য
+                        প্রস্তুত?</h2>
+                    <p class="mt-4 text-gray-700 max-w-md leading-relaxed">বাংলায় সহজ পাঠ, হাতে-কলমে প্রজেক্ট, এবং
+                        NHSPC-র জন্য প্রস্তুতি — সব কিছু এক প্ল্যাটফর্মে। আজই বিনামূল্যে শুরু করো।</p>
+                    <a href="#courses"
+                        class="btn-gradient inline-block mt-7 px-8 py-4 rounded-full text-white">বিনামূল্যে শেখা শুরু
+                        করো</a>
+                </div>
+                <div class="relative h-64 md:h-80 hidden md:block">
+                    <div
+                        class="absolute bottom-6 right-8 bg-gray-900 rounded-xl p-4 shadow-2xl code-snippet text-green-400 w-64">
+                        <p class="text-gray-500"># প্রথম প্রোগ্রাম</p>
+                        <p><span class="text-purple-400">print</span>(<span class="text-yellow-300">"হ্যালো,
+                                বিশ্ব!"</span>)</p>
+                        <p class="text-gray-500 mt-2"># আউটপুট:</p>
+                        <p class="text-white">হ্যালো, বিশ্ব!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="max-w-7xl mx-auto px-6 lg:px-8 py-20">
+        <div class="grid md:grid-cols-2 gap-12">
+            <div>
+                <p class="text-accent font-bold tracking-wider text-sm uppercase">প্রশ্নোত্তর</p>
+                <h2 class="font-bold text-gray-900 text-3xl md:text-[42px] leading-tight mt-3">
+                    ব্যাবেজ একাডেমি নিয়ে যা <br> জানতে হবে
+
+                </h2>
+            </div>
+            <div id="faq-list" class="divide-y divide-gray-200"></div>
+        </div>
+    </section>
+
+    <!-- ফুটার -->
+    <footer id="contact" class="bg-gradient-to-b from-white to-brand-50 border-t border-gray-100">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 py-16">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-10">
+                <div>
+                    <h4 class="font-bold text-gray-900 mb-4">কোর্স</h4>
+                    <ul class="space-y-3 text-sm text-gray-500">
+                        <li><a href="#" class="hover:text-brand-700">পাইথন + ICT</a></li>
+                        <li><a href="#" class="hover:text-brand-700">সি + ICT</a></li>
+                        <li><a href="#" class="hover:text-brand-700">NHSPC প্রস্তুতি</a></li>
+                        <li><a href="#" class="hover:text-brand-700">অ্যালগরিদম বেসিক</a></li>
+                        <li><a href="#" class="hover:text-brand-700">সব কোর্স</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-gray-900 mb-4">রিসোর্স</h4>
+                    <ul class="space-y-3 text-sm text-gray-500">
+                        <li><a href="#" class="hover:text-brand-700">ব্লগ</a></li>
+                        <li><a href="#" class="hover:text-brand-700">ICT নোট</a></li>
+                        <li><a href="#" class="hover:text-brand-700">কোড উদাহরণ</a></li>
+                        <li><a href="#" class="hover:text-brand-700">সাহায্য কেন্দ্র</a></li>
+                        <li><a href="#" class="hover:text-brand-700">কমিউনিটি</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-gray-900 mb-4">আমাদের সম্পর্কে</h4>
+                    <ul class="space-y-3 text-sm text-gray-500">
+                        <li><a href="#" class="hover:text-brand-700">পরিচিতি</a></li>
+                        <li><a href="#" class="hover:text-brand-700">শিক্ষক হিসেবে যোগ দিন</a></li>
+                        <li><a href="#" class="hover:text-brand-700">যোগাযোগ</a></li>
+                        <li><a href="#" class="hover:text-brand-700">শর্তাবলী</a></li>
+                        <li><a href="#" class="hover:text-brand-700">গোপনীয়তা নীতি</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-gray-900 mb-4">শুরু করো</h4>
+                    <ul class="space-y-3 text-sm text-gray-500">
+                        <li><a href="#" class="hover:text-brand-700">অ্যাকাউন্ট তৈরি</a></li>
+                        <li><a href="#" class="hover:text-brand-700">বিনামূল্যে শুরু</a></li>
+                        <li><a href="#" class="hover:text-brand-700">মূল্য তালিকা</a></li>
+                        <li><a href="#" class="hover:text-brand-700">স্কুল/কলেজ পার্টনার</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div
+                class="mt-14 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 border-t border-gray-100 pt-10">
+                <div>
+                    <h3 class="font-bold text-2xl text-gray-900">নতুন কোর্স ও টিপস পেতে সাবস্ক্রাইব করো</h3>
+                    <p class="text-sm text-gray-500 mt-2">৫,০০০+ শিক্ষার্থী আমাদের নিউজলেটার পান।</p>
+                </div>
+                <form class="flex items-center gap-3 w-full max-w-md">
+                    <input type="email" placeholder="তোমার ইমেইল লেখো"
+                        class="flex-1 h-12 px-5 rounded-full border border-gray-200 bg-white text-sm focus:outline-none focus:border-brand-600" />
+                    <button type="submit"
+                        class="btn-gradient h-12 px-8 rounded-full text-white text-sm whitespace-nowrap shrink-0">সাবস্ক্রাইব</button>
+                </form>
+            </div>
+
+            <div class="mt-10 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-gray-400">
+                <div>
+                    <p>© ২০২৫ ব্যাবেজ একাডেমি। সর্বস্বত্ব সংরক্ষিত।</p>
+                    <p class="mt-1 text-xs">ওয়েবফন্ট — <a href="https://lipighor.com"
+                            class="hover:text-brand-700 underline underline-offset-2" target="_blank"
+                            rel="noopener">lipighor.com</a></p>
+                </div>
+                <div class="flex items-center gap-4">
+                    <a href="#" aria-label="Facebook" class="hover:text-brand-700"><svg class="w-5 h-5"
+                            viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                        </svg></a>
+                    <a href="#" aria-label="YouTube" class="hover:text-brand-700"><svg class="w-5 h-5"
+                            viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                        </svg></a>
+                    <a href="#" aria-label="Instagram" class="hover:text-brand-700"><svg class="w-5 h-5"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="18" height="18" rx="5" />
+                            <circle cx="12" cy="12" r="4" />
+                            <circle cx="17" cy="7" r="1" fill="currentColor" />
+                        </svg></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const courses = [
+            {
+                tag: 'প্রোগ্রামিং',
+                title: 'পাইথন + ICT',
+                desc: 'পাইথন দিয়ে প্রোগ্রামিংয়ের ভিত্তি গড়ে তোলো। ICT সিলেবাসের সমস্যা সমাধান, অ্যালগরিদম, ডেটা হ্যান্ডলিং এবং হাতে-কলমে কোডিং — সব কিছু শূন্য থেকে শুরু। ক্লাস ৯–১০-এর জন্য উপযুক্ত।',
+                rating: '৪.৯',
+                lessons: '৩২টি পাঠ',
+                time: '১৪ ঘণ্টা ৩০ মি.',
+                img: 'https://images.unsplash.com/photo-1526379095098-d400fd0bf935?q=80&w=600&auto=format&fit=crop'
+            },
+            {
+                tag: 'প্রোগ্রামিং',
+                title: 'সি + ICT',
+                desc: 'সি প্রোগ্রামিং ভাষা ও ICT পাঠ্যক্রম একসাথে শেখো। লজিক বিল্ডিং, ডেটা স্ট্রাকচার, মেমরি ধারণা এবং দক্ষ, গঠনমূলক কোড লেখা — বোর্ড পরীক্ষার জন্য সম্পূর্ণ প্রস্তুতি।',
+                rating: '৪.৮',
+                lessons: '৩৬টি পাঠ',
+                time: '১৬ ঘণ্টা',
+                img: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=600&auto=format&fit=crop'
+            },
+            {
+                tag: 'প্রতিযোগিতা',
+                title: 'NHSPC প্রস্তুতি',
+                desc: 'জাতীয় হাই স্কুল প্রোগ্রামিং প্রতিযোগিতার জন্য সম্পূর্ণ প্রস্তুতি। প্রতিযোগিতামূলক সমস্যা সমাধান, অ্যালগরিদম, টাইমড মক কনটেস্ট — দক্ষতা ক্রমাগত বাড়াও।',
+                rating: '৫.০',
+                lessons: '২৮টি পাঠ',
+                time: '১২ ঘণ্টা ৪৫ মি.',
+                img: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=600&auto=format&fit=crop'
+            },
+        ];
+
+        const star = '<svg class="w-4 h-4 text-brand-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.9 6.2 6.6.6-5 4.4 1.5 6.6L12 17l-6 3.4 1.5-6.6-5-4.4 6.6-.6z"/></svg>';
+        const bookIcon = '<svg class="w-4 h-4 text-brand-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5a2 2 0 012-2h6v16H6a2 2 0 00-2 2V5zM20 5a2 2 0 00-2-2h-6v16h6a2 2 0 012 2V5z"/></svg>';
+        const clockIcon = '<svg class="w-4 h-4 text-brand-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>';
+
+        document.getElementById('course-grid').innerHTML = courses.map(c => `
+            <article class="rounded-2xl border border-gray-100 shadow-sm overflow-hidden bg-white hover:shadow-lg hover:-translate-y-1 transition-all duration-200">
+                <div class="relative h-44">
+                    <img src="${c.img}" alt="${c.title}" class="w-full h-full object-cover" />
+                    <span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-white/90 text-brand-800 text-xs font-semibold">#${c.tag}</span>
+                </div>
+                <div class="p-6">
+                    <h3 class="font-bold text-xl text-gray-900">${c.title}</h3>
+                    <p class="text-gray-500 text-sm mt-3 leading-relaxed">${c.desc}</p>
+                    <div class="flex flex-wrap items-center gap-4 mt-5 text-sm text-gray-600">
+                        <span class="flex items-center gap-1">${star}${c.rating}</span>
+                        <span class="flex items-center gap-1">${bookIcon}${c.lessons}</span>
+                        <span class="flex items-center gap-1">${clockIcon}${c.time}</span>
+                    </div>
+                    <button class="btn-gradient mt-5 w-full py-3.5 rounded-full text-white text-[15px]">কোর্সে ভর্তি হও</button>
+                </div>
+            </article>
+        `).join('');
+
+        const testimonials = [
+            { name: 'আনিসা রহমান', role: 'ক্লাস ১০, ঢাকা', text: 'ICT বইয়ের সাথে মিল রেখে পাঠ সাজানো — এটা আমার সবচেয়ে পছন্দ। পাইথন এখন আর ভয় লাগে না!' },
+            { name: 'রাকিবুল হাসান', role: 'ক্লাস ৯, রাজশাহী', text: 'বাংলায় বোঝানো হওয়ায় সহজে বুঝতে পারি। মেন্টররা দ্রুত উত্তর দেন। NHSPC-র জন্য অনেক উপকারী।' },
+            { name: 'ফাতিমা আক্তার', role: 'ক্লাস ১২, চট্টগ্রাম', text: 'সি প্রোগ্রামিং কোর্সে পয়েন্টার আর অ্যারে ভালোভাবে কভার করা হয়েছে। বোর্ড practical-এ ভালো ফল হয়েছে।' },
+            { name: 'সাদমান ইসলাম', role: 'ক্লাস ১১, সিলেট', text: 'ছোট ছোট প্রজেক্ট করে শেখানো হয় — শুধু তত্ত্ব নয়। কোডিং অনুশীলন অনেক বেড়েছে।' },
+            { name: 'নাদিয়া সুলতানা', role: 'ক্লাস ১০, বরিশাল', text: 'NHSPC মক কনটেস্টগুলো আসল প্রতিযোগিতার মতো। সময় ব্যবস্থাপনা শিখেছি।' },
+            { name: 'তানভীর আহমেদ', role: 'ক্লাস ৯, কুমিল্লা', text: 'বিনামূল্যে কোর্স দিয়ে শুরু করেছিলাম। এখন প্রো প্ল্যান নিয়েছি — দারুণ লাগছে!' },
+        ];
+
+        const quoteIcon = '<svg class="w-8 h-8 text-brand-600/30" viewBox="0 0 24 24" fill="currentColor"><path d="M7 7h4v6c0 2.2-1.8 4-4 4v-2c1.1 0 2-.9 2-2H7V7zm8 0h4v6c0 2.2-1.8 4-4 4v-2c1.1 0 2-.9 2-2h-2V7z"/></svg>';
+        const stars = '<svg class="w-4 h-4 text-accent" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.2 6.6.6-5 4.4 1.5 6.6L12 17l-6 3.4 1.5-6.6-5-4.4 6.6-.6z"/></svg>';
+
+        document.getElementById('testimonial-grid').innerHTML = testimonials.map(t => `
+            <div class="rounded-2xl border border-gray-100 shadow-sm bg-white p-6 hover:shadow-md transition">
+                <div class="flex items-start justify-between">
+                    <div class="flex items-center gap-3">
+                        <div class="w-11 h-11 rounded-full bg-brand-100 flex items-center justify-center text-brand-700 font-bold text-lg">${t.name.charAt(0)}</div>
+                        <div>
+                            <p class="font-bold text-gray-900">${t.name}</p>
+                            <p class="text-xs text-gray-400">${t.role}</p>
+                        </div>
+                    </div>
+                    ${quoteIcon}
+                </div>
+                <div class="flex gap-0.5 mt-4">${stars.repeat(5)}</div>
+                <p class="text-gray-600 text-sm mt-4 leading-relaxed">"${t.text}"</p>
+            </div>
+        `).join('');
+
+        const faqs = [
+            { q: 'ব্যাবেজ একাডেমি কি সত্যিই বিনামূল্যে?', a: 'হ্যাঁ! স্টার্টার প্ল্যান সম্পূর্ণ বিনামূল্যে। ৫টি কোর্সে অ্যাক্সেস পাবে, কোনো ক্রেডিট কার্ড লাগবে না।', open: true },
+            { q: 'ICT সিলেবাসের সাথে মিল আছে?', a: 'হ্যাঁ। আমাদের সব কোর্স NCTB ICT বইয়ের অধ্যায় অনুযায়ী সাজানো। বোর্ড theory ও practical — দুটোই কভার করা হয়।' },
+            { q: 'প্রোগ্রামিংয়ে একদম নতুন — শুরু করতে পারব?', a: 'অবশ্যই! প্রতিটি কোর্স শূন্য থেকে শুরু হয়। ধাপে ধাপে বাংলায় বোঝানো হয়, কোনো আগে থেকে অভিজ্ঞতা লাগে না।' },
+            { q: 'NHSPC-র জন্য কোন কোর্স নেব?', a: 'NHSPC প্রস্তুতি কোর্সটি বিশেষভাবে প্রতিযোগিতার জন্য তৈরি। পাইথন বা সি — যেটা তোমার স্কুলে শেখানো হয়, সেটার সাথে নাও।' },
+            { q: 'কোর্স শেষে সার্টিফিকেট পাব?', a: 'হ্যাঁ। প্রো ও মাস্টারি প্ল্যানে প্রতিটি কোর্স সম্পন্ন করলে সার্টিফিকেট পাবে।' },
+            { q: 'মেন্টর সাপোর্ট কীভাবে কাজ করে?', a: 'সাপ্তাহিক Q&A সেশনে প্রশ্ন করতে পারবে। মাস্টারি প্ল্যানে মাসে ২ বার ১-অন-১ সেশন পাবে।' },
+        ];
+
+        document.getElementById('faq-list').innerHTML = faqs.map(f => `
+            <div class="faq-item py-5">
+                <button class="faq-btn w-full flex items-center justify-between text-left gap-4">
+                    <span class="font-semibold text-gray-900">${f.q}</span>
+                    <span class="faq-icon text-2xl text-brand-700 leading-none flex-shrink-0">${f.open ? '−' : '+'}</span>
+                </button>
+                <div class="faq-answer ${f.open ? '' : 'hidden'} text-sm text-gray-500 leading-relaxed mt-3 pr-8">${f.a}</div>
+            </div>
+        `).join('');
+
+        document.querySelectorAll('.faq-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const item = btn.closest('.faq-item');
+                const answer = item.querySelector('.faq-answer');
+                const icon = item.querySelector('.faq-icon');
+                const isOpen = !answer.classList.contains('hidden');
+                document.querySelectorAll('.faq-item').forEach(it => {
+                    it.querySelector('.faq-answer').classList.add('hidden');
+                    it.querySelector('.faq-icon').textContent = '+';
+                });
+                if (!isOpen) {
+                    answer.classList.remove('hidden');
+                    icon.textContent = '−';
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
