@@ -256,9 +256,19 @@
                     </div>
                 </div>
                 <p class="text-sm text-gray-600 mt-4 leading-relaxed line-clamp-3">${INSTRUCTOR.bio}</p>
-                <div class="flex flex-wrap gap-3 mt-4 pt-4 border-t border-gray-100 text-xs text-gray-500">
-                    <span><i class="fa-solid fa-briefcase text-brand-600 mr-1"></i>${INSTRUCTOR.experience}</span>
-                    <span><i class="fa-solid fa-user-graduate text-brand-600 mr-1"></i>${INSTRUCTOR.students} শিক্ষার্থী</span>
+                <div class="flex flex-wrap items-center gap-2 mt-4 pt-4 border-t border-gray-100">
+                    <a href="${SITE.whatsapp}" target="_blank" rel="noopener" aria-label="WhatsApp"
+                        class="w-9 h-9 rounded-full border border-gray-200 flex items-center justify-center text-brand-700 hover:bg-brand-50 hover:border-brand-200 transition">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </a>
+                    <a href="${SITE.youtube}" target="_blank" rel="noopener" aria-label="YouTube"
+                        class="w-9 h-9 rounded-full border border-gray-200 flex items-center justify-center text-brand-700 hover:bg-brand-50 hover:border-brand-200 transition">
+                        <i class="fa-brands fa-youtube"></i>
+                    </a>
+                    <a href="${SITE.facebook}" target="_blank" rel="noopener" aria-label="Facebook"
+                        class="w-9 h-9 rounded-full border border-gray-200 flex items-center justify-center text-brand-700 hover:bg-brand-50 hover:border-brand-200 transition">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </a>
                 </div>`;
 
             const related = COURSES.filter((c) => c.id !== course.id);
