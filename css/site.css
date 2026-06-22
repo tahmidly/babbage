@@ -312,6 +312,264 @@ body.site-ready .hero-visual {
     animation-play-state: paused;
 }
 
+/* ── Why Babbage section ── */
+.why-section {
+    background: linear-gradient(180deg, #ffffff 0%, #f0fdf4 45%, #ffffff 100%);
+}
+
+.why-section-glow {
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse 55% 40% at 15% 20%, rgba(34, 197, 94, 0.12), transparent 70%),
+        radial-gradient(ellipse 45% 35% at 85% 75%, rgba(245, 158, 11, 0.1), transparent 70%);
+    animation: whyGlowDrift 10s ease-in-out infinite;
+}
+
+.why-section-glow-alt {
+    background: radial-gradient(ellipse 40% 30% at 70% 30%, rgba(34, 197, 94, 0.08), transparent 70%);
+    animation: whyGlowDriftAlt 12s ease-in-out infinite reverse;
+}
+
+@keyframes whyGlowDrift {
+
+    0%,
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.75;
+        transform: scale(1.04);
+    }
+}
+
+@keyframes whyGlowDriftAlt {
+
+    0%,
+    100% {
+        transform: translate(0, 0);
+    }
+
+    50% {
+        transform: translate(-2%, 3%);
+    }
+}
+
+.why-narrative-panel::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: linear-gradient(105deg, transparent 42%, rgba(255, 255, 255, 0.55) 50%, transparent 58%);
+    transform: translateX(-120%);
+    animation: whyPanelShine 7s ease-in-out infinite;
+    pointer-events: none;
+}
+
+.why-narrative-panel > :not(.why-blob) {
+    position: relative;
+    z-index: 1;
+}
+
+@keyframes whyPanelShine {
+
+    0%,
+    78%,
+    100% {
+        transform: translateX(-120%);
+    }
+
+    88% {
+        transform: translateX(120%);
+    }
+}
+
+.why-blob {
+    animation: whyBlobFloat 8s ease-in-out infinite;
+}
+
+.why-blob-delay {
+    animation-delay: -4s;
+}
+
+@keyframes whyBlobFloat {
+
+    0%,
+    100% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    50% {
+        transform: translate(-10px, 8px) scale(1.12);
+    }
+}
+
+.why-chip-icon {
+    position: relative;
+    z-index: 1;
+    animation: whyChipFloat 4.5s ease-in-out infinite;
+}
+
+@keyframes whyChipFloat {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+.why-badge-star {
+    display: inline-block;
+    animation: whyStarTwinkle 2.4s ease-in-out infinite;
+}
+
+@keyframes whyStarTwinkle {
+
+    0%,
+    100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.25) rotate(12deg);
+        opacity: 0.85;
+    }
+}
+
+.why-tag {
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+.reveal-left.revealed .why-tag {
+    animation: whyTagIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.reveal-left.revealed .why-tag:nth-child(1) {
+    animation-delay: 0.35s;
+}
+
+.reveal-left.revealed .why-tag:nth-child(2) {
+    animation-delay: 0.5s;
+}
+
+.reveal-left.revealed .why-tag:nth-child(3) {
+    animation-delay: 0.65s;
+}
+
+@keyframes whyTagIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.why-benefit-card {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    transition: background-color 0.25s ease;
+}
+
+.why-benefit-card:hover {
+    background-color: rgba(240, 253, 244, 0.85);
+}
+
+.why-benefit-icon {
+    flex-shrink: 0;
+    align-self: center;
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.why-benefit-card.revealed .why-benefit-icon {
+    animation: whyIconPop 0.55s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+}
+
+.why-benefit-card:nth-child(1).revealed .why-benefit-icon { animation-delay: 0.05s; }
+.why-benefit-card:nth-child(2).revealed .why-benefit-icon { animation-delay: 0.1s; }
+.why-benefit-card:nth-child(3).revealed .why-benefit-icon { animation-delay: 0.15s; }
+.why-benefit-card:nth-child(4).revealed .why-benefit-icon { animation-delay: 0.2s; }
+.why-benefit-card:nth-child(5).revealed .why-benefit-icon { animation-delay: 0.25s; }
+.why-benefit-card:nth-child(6).revealed .why-benefit-icon { animation-delay: 0.3s; }
+.why-benefit-card:nth-child(7).revealed .why-benefit-icon { animation-delay: 0.35s; }
+.why-benefit-card:nth-child(8).revealed .why-benefit-icon { animation-delay: 0.4s; }
+.why-benefit-card:nth-child(9).revealed .why-benefit-icon { animation-delay: 0.45s; }
+.why-benefit-card:nth-child(10).revealed .why-benefit-icon { animation-delay: 0.5s; }
+.why-benefit-card:nth-child(11).revealed .why-benefit-icon { animation-delay: 0.55s; }
+
+@keyframes whyIconPop {
+    from {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.why-benefit-card:hover .why-benefit-icon {
+    transform: scale(1.1);
+}
+
+.why-benefit-card p {
+    margin: 0;
+    flex: 1;
+    align-self: center;
+}
+
+/* ── Parent / educator message ── */
+.parent-message-visual {
+    position: relative;
+}
+
+.parent-message-illustration {
+    display: block;
+    animation: parentIllustrationFloat 5s ease-in-out infinite;
+}
+
+@keyframes parentIllustrationFloat {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+.parent-message-body {
+    padding-top: 0.25rem;
+}
+
+.parent-message-paragraph {
+    color: #4b5563;
+    font-size: 0.9375rem;
+    font-weight: 400;
+    line-height: 1.85;
+}
+
+.parent-message-paragraph + .parent-message-paragraph {
+    margin-top: 1.25rem;
+}
+
+@media (min-width: 768px) {
+    .parent-message-paragraph {
+        font-size: 1rem;
+    }
+}
+
+
 /* ── Typing cursor ── */
 .typing-cursor::after {
     content: '|';
@@ -431,6 +689,25 @@ body.site-ready .hero-visual {
     .gear-rev,
     .gear-fast,
     .dial-strip {
+        animation: none;
+    }
+
+    .why-section-glow,
+    .why-section-glow-alt,
+    .why-narrative-panel::after,
+    .why-blob,
+    .why-chip-icon,
+    .why-badge-star,
+    .why-benefit-card.revealed .why-benefit-icon {
+        animation: none;
+    }
+
+    .why-tag {
+        opacity: 1;
+        transform: none;
+    }
+
+    .parent-message-illustration {
         animation: none;
     }
 }
